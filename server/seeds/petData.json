@@ -1,0 +1,59 @@
+[
+    {
+      "name": "Bella",
+      "species": "Dog",
+      "breed": "Labrador Retriever",
+      "age": 3,
+      "owner": null
+    },
+    {
+      "name": "Luna",
+      "species": "Cat",
+      "breed": "Siamese",
+      "age": 2,
+      "owner": null
+    },
+    {
+      "name": "Max",
+      "species": "Dog",
+      "breed": "German Shepherd",
+      "age": 4,
+      "owner": null
+    },
+    {
+      "name": "Coco",
+      "species": "Rabbit",
+      "breed": "Netherland Dwarf",
+      "age": 1,
+      "owner": null
+    },
+    {
+      "name": "Lucy",
+      "species": "Bird",
+      "breed": "Parakeet",
+      "age": 2,
+      "owner": null
+    },
+    {
+      "name": "Daisy",
+      "species": "Dog",
+      "breed": "Beagle",
+      "age": 3,
+      "owner": null
+    },
+    {
+      "name": "Milo",
+      "species": "Cat",
+      "breed": "Maine Coon",
+      "age": 5,
+      "owner": null
+    },
+    {
+      "name": "Charlie",
+      "species": "Guinea Pig",
+      "breed": "American",
+      "age": 1,
+      "owner": null
+    }
+  ]
+  
