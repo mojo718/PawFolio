@@ -19,7 +19,7 @@ const ownerSchema = new Schema({
     type: String,
     required: true,
   },
-  JoinedOn: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
