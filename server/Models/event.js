@@ -11,7 +11,10 @@ const eventSchema = new Schema(
     pet: {
       type: Schema.Types.ObjectId,
       ref: 'Pet',
-      required: true,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'Owner',
     },
     type: {
       type: String,

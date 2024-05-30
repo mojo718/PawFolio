@@ -1,5 +1,11 @@
+const { Owner } = require('../models')
+
 const resolvers = {
-  TODO: "REPLACE ME"
+  Query: {
+    owners: async () => {
+      return Owner.find({});
+    }
+  }
 }
 
 module.exports = resolvers;
