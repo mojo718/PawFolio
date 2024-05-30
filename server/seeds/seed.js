@@ -1,24 +1,20 @@
 const db = require('../config/connection');
-const { Owner, Pet, Event } = require('../models');
 const cleanDB = require('./cleanDB');
-
-const ownerData = require('./data/ownerData.json');
-const petData = require('./data/petData.json')
-const eventData = require('./data/eventData.json')
+const seedEvent = require('./data/seedEvent');
+const seedOwner = require('./data/seedOwner')
+const seedPet = require('./data/seedPet')
 
 db.once('open', async () => {
 
   await cleanDB('Owner', 'owners');
-  await Owner.create(ownerData);
-  console.log('----------Owner data seeded!----------');
-
   await cleanDB('Pet', 'pets');
-  await Pet.create(petData);
-  console.log('-----------Pet data seeded!-----------');
-
   await cleanDB('Event', 'events');
-  await Event.create(eventData);
-  console.log('----------Event data seeded!----------');
+
+  const owners = await seedOwner();
+
+  const pets = await seedPet(owners);
+
+  await seedEvent(pets);
 
   process.exit(0);
 });

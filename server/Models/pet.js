@@ -1,7 +1,8 @@
 const { Schema, model } = require('mongoose');
+const healthSchema = require('./Health');
 
-// TODO: Finish health model to add as a subdocument schema to pet model
 // TO CONSIDER: Change age to birthday then add a virtual to convert to age when needed
+// NOTE: picLink may not work yet, need testing
 
 const petSchema = new Schema(
   {
@@ -9,6 +10,14 @@ const petSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    pic: {
+      type: String,
+      default: './assets/profilePic/projects/catPFP360x360.jpg'
+    },
+    bio: {
+      type: String,
+      // Does this need a character limit?
     },
     species: {
       type: String,
@@ -23,6 +32,7 @@ const petSchema = new Schema(
     adoptionDate: {
       type: Date,
     },
+    health: healthSchema,
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'Owner'
