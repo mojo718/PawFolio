@@ -6,11 +6,6 @@ export const QUERY_PROFILE = gql`
       _id
       username
       email
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-      }
     }
   }
 `;
