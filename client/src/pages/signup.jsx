@@ -34,7 +34,6 @@ const Signup = () => {
         variables: { ...formState },
       });
 
-      console.log(data)
       Auth.login(data.createOwner.token);
     } catch (e) {
       console.error(e);

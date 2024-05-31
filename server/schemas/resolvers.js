@@ -1,5 +1,6 @@
-const { Owner } = require('../models')
+const { Owner, Pet } = require('../models')
 const { signToken, AuthenticationError } = require('../utils/auth')
+const ObjectId = require('mongoose');
 
 const resolvers = {
   Query: {
@@ -8,7 +9,7 @@ const resolvers = {
     },
     me: async(parents, args, context) => {
       if (context.user) {
-        return Owner.findOne({ _id: context.user._id }).populate('thoughts');
+        return Owner.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
     }
@@ -34,6 +35,17 @@ const resolvers = {
       const owner = await Owner.create({ username, email, password });
       const token = signToken(owner)
       return { token, owner };
+    },
+    addPet: async (parent, args, context) => {
+      const pet = await Pet.create({ ...args, owner: context.user._id });
+
+      await Owner.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { pets: pet._id }},
+        { runValidators: true, new: true }
+      )
+
+      return pet 
     }
   }
 }

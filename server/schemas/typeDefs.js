@@ -4,17 +4,18 @@ const typeDefs = `
     username: String!
     email: String!
     pets: [Pet]
+    petCount: Int
   }
 
   type Pet {
-    name: String!
+    name: String
     pic: String
     bio: String
     species: String
     breed: String
     age: Int
     adoptionDate: String
-    owner: [Owner]
+    owner: Owner
     events: [Event]
   }
 
@@ -43,6 +44,7 @@ const typeDefs = `
   type Mutation {
     login(email: String!, password: String!): Auth
     createOwner(username: String!, email: String!, password: String!): Auth
+    addPet(name: String, species: String!, breed: String, age: Int): Pet
   }
 `;
 

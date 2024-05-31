@@ -34,7 +34,7 @@ const ownerSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
-    }
+    },
   }
 );
 
