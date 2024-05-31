@@ -21,4 +21,25 @@ export const CREATE_OWNER = gql`
         username
       }
     }
-  }`;
+  }
+`;
+
+export const ADD_PET = gql`
+  mutation addPet($name: String, $species: String!, $breed: String, $age: Int) {
+    addPet(name: $name, species: $species, breed: $breed, age: $age) {
+      _id
+      username
+      petCount
+    }
+  }
+`
+
+export const REMOVE_PET = gql`
+  mutation Mutation($petId: String!) {
+    removePet(petId: $petId) {
+      _id
+      username
+      petCount
+    }
+  }
+`
