@@ -4,9 +4,15 @@ const { Schema, model } = require('mongoose');
 
 const eventSchema = new Schema(
   {
-    startTime: {
-      type: Date,
+    title: {
+      type: String,
       required: true,
+    },
+    startTime: {
+      type: Date
+    },
+    location: {
+      type: String
     },
     pet: {
       type: Schema.Types.ObjectId,

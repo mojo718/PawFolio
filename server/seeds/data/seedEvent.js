@@ -10,7 +10,8 @@ const seedEvent = async (pets) => {
         "owner": pets[0].owner._id,
         "type": "Vet Visit",
         "status": "Scheduled",
-        "notes": "Routine check-up"
+        "notes": "Check for ticks",
+        "title": "Routine check-up"
       },
       {
         "startTime": "2024-06-05T15:00:00Z",
@@ -18,7 +19,8 @@ const seedEvent = async (pets) => {
         "owner": pets[2].owner._id,
         "type": "Grooming",
         "status": "Scheduled",
-        "notes": "Full grooming session"
+        "notes": "Full",
+        "title": "Grooming session"
       }
     ]
   )
