@@ -66,7 +66,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    updatePet: async (parent, { petId, ...rest }) => {
+    updatePet: async (parent, { petId, ...rest }, context) => {
       if (context.user) {
         const pet = await Pet.findOneAndUpdate(
           { _id: petId },
