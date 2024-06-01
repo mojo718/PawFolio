@@ -2,7 +2,7 @@ const { Schema, Types } = require('mongoose');
 
 const vetSchema = new Schema(
   {
-    vetName: {
+    name: {
       type: String
     },
     location: {
@@ -32,9 +32,6 @@ const diagSchema = new Schema(
     location: {
       type: String
     }
-  },
-  {
-    _id: false
   }
 )
 

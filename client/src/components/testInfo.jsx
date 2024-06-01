@@ -1,10 +1,4 @@
-import { usePetContext } from '../utils/PetContext'
-
-export default function HealthInfo() {
-
-  const { data: { pet } } = usePetContext();
-
-  console.log("healthInfo:", pet)
+export default function TestInfo({ pet }) {
 
   return (
     <div>

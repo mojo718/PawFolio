@@ -37,6 +37,44 @@ export const QUERY_PET = gql`
   }
 `;
 
+export const QUERY_PET_HEALTH = gql`
+  query Query($petId: String!) {
+    pet(petId: $petId) {
+      _id
+      name
+      species
+      breed
+      age
+      bio
+      pic
+      adoptionDate
+      health {
+        allergies
+        vet {
+          name
+          location
+          speciality
+        }
+        diagnosis {
+          _id
+          issue
+          location
+          startDate
+          endDate
+        }
+        notes {
+          description
+          createdAt
+        }
+      }
+      owner {
+        _id
+        username
+      }
+    }
+  }
+`;
+
 // Currently unused
 // export const QUERY_PROFILE = gql`
 //   query user($username: String!) {

@@ -65,6 +65,18 @@ const resolvers = {
         return owner;
       }
       throw AuthenticationError;
+    },
+    updatePet: async (parent, { petId, ...rest }) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { ...rest },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
     }
   }
 }

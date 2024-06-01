@@ -32,7 +32,7 @@ export const ADD_PET = gql`
       petCount
     }
   }
-`
+`;
 
 export const REMOVE_PET = gql`
   mutation Mutation($petId: String!) {
@@ -42,4 +42,13 @@ export const REMOVE_PET = gql`
       petCount
     }
   }
-`
+`;
+
+export const UPDATE_PET = gql`
+  mutation updatePet($petId: String!, $species: String!, $name: String, $pic: String, $bio: String) {
+    updatePet(petId: $petId, species: $species, name: $name, pic: $pic, bio: $bio) {
+      _id
+      name
+    }
+  }
+`;
