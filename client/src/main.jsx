@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       //   element: <Profile />
       // }, 
       {
-        path: '/health',
+        path: '/health/:petId',
         element: <HealthJournal />
       }
     ]

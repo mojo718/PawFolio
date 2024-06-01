@@ -18,7 +18,6 @@ const seedOwner = async () => {
   )
 
   console.log('----------Owner data seeded!----------');
-  console.log(seededOwners)
   return seededOwners;
 }
 

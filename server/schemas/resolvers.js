@@ -1,6 +1,5 @@
 const { Owner, Pet } = require('../models')
 const { signToken, AuthenticationError } = require('../utils/auth')
-const ObjectId = require('mongoose');
 
 const resolvers = {
   Query: {
@@ -8,7 +7,7 @@ const resolvers = {
       return Owner.find({}).populate('pets');
     },
     pet: async (parent, { petId }) => {
-      return Pet.findById(petId).populate('owner').populate('events')
+      return Pet.findById(petId).populate('owner').populate('events');
     },
     me: async(parents, args, context) => {
       if (context.user) {

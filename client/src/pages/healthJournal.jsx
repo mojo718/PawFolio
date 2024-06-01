@@ -1,7 +1,14 @@
+import { PetProvider } from '../utils/PetContext';
+import HealthInfo from '../components/healthInfo';
+
 const HealthJournal = () => {
   return (
-    <h1>This is a placeholder yay!</h1>
-  );
-};
+    <div>
+      <PetProvider>
+        <HealthInfo />
+      </PetProvider>
+    </div>
+  )
+}
 
 export default HealthJournal
