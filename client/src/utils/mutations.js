@@ -12,18 +12,6 @@ export const LOGIN_USER = gql`
   }
 `;
 
-// export const ADD_PROFILE = gql`
-//   mutation addUser($username: String!, $email: String!, $password: String!) {
-//     addUser(username: $username, email: $email, password: $password) {
-//       token
-//       user {
-//         _id
-//         username
-//       }
-//     }
-//   }
-// `;
-
 export const CREATE_OWNER = gql`
   mutation createOwner($username: String!, $email: String!, $password: String!) {
     createOwner(username: $username, email: $email, password: $password) {
@@ -33,4 +21,25 @@ export const CREATE_OWNER = gql`
         username
       }
     }
-  }`;
+  }
+`;
+
+export const ADD_PET = gql`
+  mutation addPet($name: String, $species: String!, $breed: String, $age: Int) {
+    addPet(name: $name, species: $species, breed: $breed, age: $age) {
+      _id
+      username
+      petCount
+    }
+  }
+`
+
+export const REMOVE_PET = gql`
+  mutation Mutation($petId: String!) {
+    removePet(petId: $petId) {
+      _id
+      username
+      petCount
+    }
+  }
+`

@@ -8,8 +8,8 @@ const petSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
+      default: "Unnamed"
     },
     pic: {
       type: String,
