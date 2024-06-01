@@ -76,7 +76,7 @@ const typeDefs = `
     createOwner(username: String!, email: String!, password: String!): Auth
     addPet(name: String, pic: String, bio: String, species: String!, breed: String, age: Int, adoptionDate: String): Owner
     removePet(petId: String!): Owner
-    updatePet(petId: String!, name: String, pic: String, bio: String, species: String!, breed: String, age: Int, adoptionDate: String): Pet
+    updatePet(petId: String!, name: String, pic: String, bio: String, species: String, breed: String, age: Int, adoptionDate: String): Pet
   }
 `;
 

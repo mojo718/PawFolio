@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { UPDATE_PET } from '../utils/mutations'
+import { UPDATE_PET } from '../utils/mutations';
+import { QUERY_PET_HEALTH } from '../utils/queries';
+
+// ISSUE: Apollo error when trying to change age -- Is this a data type problem?
+// ISSUE: How do I rerender at the parent level after form submission?
+// TO CONSIDER: Add message popup after profile update
 
 export default function TestInfo({ pet }) {
-
   const [formInput, toggleInput] = useState(false);
   const [formState, setFormState] = useState({
     name: pet.name,
@@ -11,7 +15,10 @@ export default function TestInfo({ pet }) {
     breed: pet.breed,
     age: pet.age
   })
-  const [updatePet, { error }] = useMutation(UPDATE_PET);
+
+  const [updatePet, { error }] = useMutation(UPDATE_PET, {
+    refetchQueries: [QUERY_PET_HEALTH]
+  });
 
   const handleFormToggle = async () => {
     toggleInput(!formInput)
@@ -20,10 +27,19 @@ export default function TestInfo({ pet }) {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setFormState({
-      ...formState,
-      [name]: value
-    })
+    // Small fix for an issue with data type when editing numbers in the form
+    if ( name == "age" ){
+      const numValue = parseInt(value)
+      setFormState({
+        ...formState,
+        [name]: numValue
+      })
+    } else {
+      setFormState({
+        ...formState,
+        [name]: value
+      })
+    }
   }
 
   const handleFormSubmit = async (event) => {
@@ -34,17 +50,17 @@ export default function TestInfo({ pet }) {
       await updatePet({
         variables: { ...formState, petId: pet._id }
       })
-      
+      toggleInput(!formInput)
     } catch (e) {
       console.error(e)
     }
   }
 
+
   return (
-    <div>
+    <div style={{ border: '1px solid black' }}>
       {formInput ? (
         <>
-          <h1>formInput is true!</h1>
           <form onSubmit={handleFormSubmit}>
             Name: <input type="text" placeholder={formState.name} name="name" value={formState.name} onChange={handleChange}/>
             Species: <input type="text" placeholder={formState.species} name="species" value={formState.species} onChange={handleChange}/>
@@ -52,7 +68,7 @@ export default function TestInfo({ pet }) {
             Age: <input type="text" placeholder={formState.age} name="age" value={formState.age} onChange={handleChange}/>
             <button type="submit">Update Pet</button>
           </form>
-          <button onClick={handleFormToggle}>Edit Pet Info</button>
+          <button onClick={handleFormToggle}>Cancel Edit</button>
         </>
       ) : (
         <>
@@ -64,7 +80,7 @@ export default function TestInfo({ pet }) {
           <button onClick={handleFormToggle}>Edit Pet Info</button>
         </>
       )}
-        <div>
+        <div style={{ border: '1px solid black' }}>
           {pet.health.diagnosis.map((item) => (
             <div key={item._id}>
               <p>Issue: {item.issue}</p>

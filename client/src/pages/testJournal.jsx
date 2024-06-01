@@ -10,7 +10,7 @@ const TestJournal = () => {
   })
 
   if (loading) {
-    return <div>Fetching pet data...</div>;
+    return <div>Trying to fetch pet data...</div>;
   }
 
 
@@ -18,7 +18,8 @@ const TestJournal = () => {
 
   return (
     <div>
-        <TestInfo pet={data.pet}/>
+      <h1>PLACEHOLDER FROM PARENT</h1>
+      <TestInfo pet={data.pet}/>
     </div>
   )
 }

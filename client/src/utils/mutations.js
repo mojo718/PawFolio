@@ -45,8 +45,8 @@ export const REMOVE_PET = gql`
 `;
 
 export const UPDATE_PET = gql`
-  mutation updatePet($petId: String!, $species: String!, $name: String, $pic: String, $bio: String) {
-    updatePet(petId: $petId, species: $species, name: $name, pic: $pic, bio: $bio) {
+  mutation updatePet($petId: String!, $species: String, $name: String, $pic: String, $bio: String, $breed: String, $age: Int) {
+    updatePet(petId: $petId, species: $species, name: $name, pic: $pic, bio: $bio, breed: $breed, age: $age) {
       _id
       name
     }
