@@ -67,3 +67,19 @@ export const ADD_DIAG = gql`
     }
   }
 `;
+
+export const REMOVE_DIAG = gql`
+  mutation RemoveDiag($petId: String!, $diagId: String!) {
+    removeDiag(petId: $petId, diagId: $diagId) {
+      _id
+      name
+      health {
+        diagnosis {
+          _id
+          issue
+          location
+        }
+      }
+    }
+  }
+`;
