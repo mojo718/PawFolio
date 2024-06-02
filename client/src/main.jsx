@@ -7,7 +7,6 @@ import Home from './pages/home.jsx'
 import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import HealthJournal from './pages/healthJournal.jsx';
-import TestJournal from './pages/testJournal.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,10 +31,6 @@ const router = createBrowserRouter([
       {
         path: '/health/:petId',
         element: <HealthJournal />
-      },
-      {
-        path: '/test/:petId',
-        element: <TestJournal />
       }
     ]
   },
