@@ -22,10 +22,14 @@ const typeDefs = `
   }
 
   type Health {
-    allergies: String
+    allergies: [Allergy]
     vet: [Vet]
     diagnosis: [Diag]
     notes: [Note]
+  }
+
+  type Allergy {
+    name: String!
   }
 
   type Vet {
@@ -36,7 +40,7 @@ const typeDefs = `
 
   type Diag {
     _id: ID!
-    issue: String
+    issue: String!
     startDate: String
     endDate: String
     location: String
@@ -77,6 +81,9 @@ const typeDefs = `
     addPet(name: String, pic: String, bio: String, species: String!, breed: String, age: Int, adoptionDate: String): Owner
     removePet(petId: String!): Owner
     updatePet(petId: String!, name: String, pic: String, bio: String, species: String, breed: String, age: Int, adoptionDate: String): Pet
+    addAllergy(petId: String!, name: String!): Pet
+    addDiag(petId: String!, issue: String!, startDate: String, endDate: String, location: String): Pet
+    removeDiag(petId: String!, diagId: String!): Pet
   }
 `;
 

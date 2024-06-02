@@ -3,8 +3,6 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_PET } from '../utils/mutations';
 import { QUERY_PET_HEALTH } from '../utils/queries';
 
-// ISSUE: Apollo error when trying to change age -- Is this a data type problem?
-// ISSUE: How do I rerender at the parent level after form submission?
 // TO CONSIDER: Add message popup after profile update
 
 export default function TestInfo({ pet }) {

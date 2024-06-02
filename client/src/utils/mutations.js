@@ -52,3 +52,18 @@ export const UPDATE_PET = gql`
     }
   }
 `;
+
+export const ADD_DIAG = gql`
+  mutation Mutation($petId: String!, $issue: String!, $location: String, $endDate: String, $startDate: String) {
+    addDiag(petId: $petId, issue: $issue, location: $location, endDate: $endDate, startDate: $startDate) {
+      _id
+      name
+      health {
+        diagnosis {
+          issue
+          location
+        }
+      }
+    }
+  }
+`;

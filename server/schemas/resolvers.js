@@ -66,7 +66,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    updatePet: async (parent, { petId, ...rest }, context) => {
+    updatePet: async (parent, { petId, ...rest }, context) => { 
       if (context.user) {
         const pet = await Pet.findOneAndUpdate(
           { _id: petId },
@@ -75,6 +75,42 @@ const resolvers = {
         )
 
         return pet;
+      }
+      throw AuthenticationError;
+    },
+    // Used for testing; Unused in client-side
+    addAllergy: async (parent, { petId, name }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { "health.allergies": { name } } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    addDiag: async (parent, { petId, ...rest }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { "health.diagnosis": { ...rest } } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    removeDiag: async (parent, { petId, diagId }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $pull: { "health.diagnosis": { _id: diagId } } },
+          { runValidators: true, new: true }
+        )
+        return pet
       }
       throw AuthenticationError;
     }

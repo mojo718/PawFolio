@@ -49,7 +49,9 @@ export const QUERY_PET_HEALTH = gql`
       pic
       adoptionDate
       health {
-        allergies
+        allergies {
+          name
+        }
         vet {
           name
           location

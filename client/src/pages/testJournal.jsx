@@ -11,6 +11,14 @@ const TestJournal = () => {
     variables: { petId: petId }
   })
 
+  if (data) {
+    console.log(data)
+  }
+  
+  // NOTE: All pet health data gets pulled at this point, along with info needed for authentification
+  // This was done to reduce the amount of transactions with the database
+  // This might be a privacy issue and should be refactored in the future
+
   const handleToHomeClick = () => {
     navigate('/');
   }
@@ -20,7 +28,7 @@ const TestJournal = () => {
   }
 
   // Auth that only allows owner to view pet health info
-  // Checks for 'id_token' then decodes it if it exists 
+  // Checks for 'id_token', decodes it if it exists, then compares token id with pet owner id
   if (Auth.getToken()) {
     const userId = Auth.getProfile().data._id
     if (userId !== data.pet.owner._id ) {

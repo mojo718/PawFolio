@@ -19,7 +19,15 @@ const seedPet = async (owners) => {
         "owner": owners[0],
         "health": 
           {
-            "allergies": "egg",
+            "allergies": 
+              [
+                {
+                  "name": "egg"
+                },
+                {
+                  "name": "bees"
+                }
+              ],
             "vet": 
               {
                 "vetName": "Dr. Shou Tucker",
