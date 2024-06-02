@@ -1,4 +1,5 @@
 import HealthInfo from '../components/healthInfo';
+import HealthMap from '../components/healthMap'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_PET_HEALTH } from '../utils/queries';
@@ -51,6 +52,7 @@ const HealthJournal = () => {
   return (
     <div>
       <h1>PLACEHOLDER FROM PARENT</h1>
+      <HealthMap pet={data.pet}/>
       <HealthInfo pet={data.pet}/>
     </div>
   )

@@ -83,3 +83,35 @@ export const REMOVE_DIAG = gql`
     }
   }
 `;
+
+export const SET_PIN = gql`
+  mutation setPin($petId: String!, $diagId: String!, $pinPosition: String!) {
+    setPin(petId: $petId, diagId: $diagId, pinPosition: $pinPosition) {
+      _id
+      name
+      health {
+        diagnosis {
+          _id
+          issue
+          pinPosition
+        }
+      }
+    }
+  }
+`;
+
+export const REMOVE_PIN = gql`
+  mutation removePin($petId: String!, $diagId: String!) {
+    removePin(petId: $petId, diagId: $diagId) {
+      _id
+      name
+      health {
+        diagnosis {
+          _id
+          issue
+          pinPosition
+        }
+      }
+    }
+  }
+`;

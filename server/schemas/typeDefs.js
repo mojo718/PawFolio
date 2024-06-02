@@ -44,6 +44,7 @@ const typeDefs = `
     startDate: String
     endDate: String
     location: String
+    pinPosition: String
   }
 
   type Note {
@@ -84,6 +85,8 @@ const typeDefs = `
     addAllergy(petId: String!, name: String!): Pet
     addDiag(petId: String!, issue: String!, startDate: String, endDate: String, location: String): Pet
     removeDiag(petId: String!, diagId: String!): Pet
+    setPin(petId: String!, diagId: String!, pinPosition: String!): Pet
+    removePin(petId: String!, diagId: String!): Pet
   }
 `;
 

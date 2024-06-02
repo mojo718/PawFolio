@@ -126,7 +126,7 @@ export default function HealthInfo({ pet }) {
                 Location: <input type="text" placeholder="Location" name="location" value={formDiagState.location} onChange={handleDiagChange}></input>
                 <button type="submit" style={{ backgroundColor: "grey" }}>Add Issue</button>
               </form>
-              <button style={{ backgroundColor: "grey" }} onClick={handleDiagToggle}>Cancel Adding Issue</button>
+              <button style={{ backgroundColor: "grey" }} onClick={handleDiagToggle}>Discard Issue</button>
             </>
           ) : (
             <>

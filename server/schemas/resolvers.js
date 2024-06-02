@@ -113,6 +113,28 @@ const resolvers = {
         return pet
       }
       throw AuthenticationError;
+    },
+    setPin: async (parent, { petId, diagId, pinPosition }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId, "health.diagnosis._id": diagId },
+          { $set: { "health.diagnosis.$.pinPosition": pinPosition}},
+          { runValidators: true, new: true }
+        )
+        return pet
+      }
+      throw AuthenticationError;
+    },
+    removePin: async (parent, { petId, diagId }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId, "health.diagnosis._id": diagId },
+          { $unset: { "health.diagnosis.$.pinPosition": "" }},
+          { runValidators: true, new: true }
+        )
+        return pet
+      }
+      throw AuthenticationError;
     }
   }
 }

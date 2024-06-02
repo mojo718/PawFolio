@@ -40,6 +40,9 @@ const diagSchema = new Schema(
     },
     location: {
       type: String
+    },
+    pinPosition: {
+      type: String
     }
   }
 )

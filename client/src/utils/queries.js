@@ -63,6 +63,7 @@ export const QUERY_PET_HEALTH = gql`
           location
           startDate
           endDate
+          pinPosition
         }
         notes {
           description
