@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { UPDATE_PET, ADD_DIAG, REMOVE_DIAG } from '../utils/mutations';
+import { UPDATE_PET, ADD_DIAG, REMOVE_DIAG, REMOVE_PIN } from '../utils/mutations';
 import { QUERY_PET_HEALTH } from '../utils/queries';
 
 // TO CONSIDER: Add message popup after profile update?
 
-export default function HealthInfo({ pet }) {
+export default function HealthInfo({ pet, pin }) {
+
+  // ---------------Code for profile edit--------------- //
+
   const [formEdit, toggleEdit] = useState(false);
   const [formState, setFormState] = useState({
     name: pet.name,
@@ -49,6 +52,8 @@ export default function HealthInfo({ pet }) {
       console.error(e)
     }
   }
+
+  // ---------------Code for diagnosis/issue--------------- //
 
   const [formDiag, toggleDiag] = useState(false);
   const [formDiagState, setDiagState] = useState({
@@ -94,7 +99,31 @@ export default function HealthInfo({ pet }) {
     }
   }
 
-  return (
+  // ---------------Code for pins--------------- //
+
+  const [removePin] = useMutation(REMOVE_PIN, {refetchQueries: [QUERY_PET_HEALTH]});
+
+  const handleReadyPin = async (event) => {
+    console.log("pinState", pin.pinState)
+    if (pin.pinState) {
+      pin.readyPin('')
+    } else {
+      pin.readyPin(event.target.dataset.id)
+    }
+  }
+
+  const handleRemovePin = async (event) => {
+    console.log(event.target.dataset.id)
+    try {
+      await removePin({
+        variables: { petId: pet._id, diagId: event.target.dataset.id }
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+    return (
     <div style={{ border: '1px solid black' }}>
       {formEdit ? (
         <>
@@ -137,7 +166,16 @@ export default function HealthInfo({ pet }) {
             <div key={item._id} style={{ border: '1px solid black', margin:'5px' }}>
               <p>Issue: {item.issue}</p>
               <p>Location: {item.location}</p>
-              <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleRemoveDiag}>Remove Issue</button>
+              {item.pinPosition ? (
+                <>
+                  <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleRemovePin}>Remove Pin</button>
+                </>
+              ) : (
+                <>
+                  <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleReadyPin}>{pin.pinState ? 'Setting Pin. Click to Cancel' : 'Add Pin'}</button>
+                </>
+              )}
+              <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleRemoveDiag}>Remove This Issue</button>
             </div>
           ))}
         </div>

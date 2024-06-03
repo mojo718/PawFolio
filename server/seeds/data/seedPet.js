@@ -36,7 +36,8 @@ const seedPet = async (owners) => {
             "diagnosis":
               {
                 "issue": "rash",
-                "location": "lower left torso"
+                "location": "lower left torso",
+                "pinPosition": "42.40x51.07"
               },
           }
       },

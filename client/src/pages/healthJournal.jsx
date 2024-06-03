@@ -1,7 +1,8 @@
-import HealthInfo from '../components/healthInfo';
-import HealthMap from '../components/healthMap'
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import HealthInfo from '../components/healthInfo';
+import HealthMap from '../components/healthMap'
 import { QUERY_PET_HEALTH } from '../utils/queries';
 import Auth from '../utils/auth'
 
@@ -11,6 +12,8 @@ const HealthJournal = () => {
   const { loading, data } = useQuery(QUERY_PET_HEALTH, {
     variables: { petId: petId }
   })
+
+  const [pinState, readyPin] = useState('')
 
   if (data) {
     console.log(data)
@@ -29,31 +32,31 @@ const HealthJournal = () => {
   }
 
   // Auth that only allows owner to view pet health info
-  // Checks for 'id_token', decodes it if it exists, then compares token id with pet owner id
-  if (Auth.getToken()) {
+  // Checks for 'id_token', decodes it if it exists pr expired, then compares token id with pet owner id
+  if (!Auth.getToken() || Auth.isTokenExpired(Auth.getToken()) === true) {
+    return (
+      <>
+        <div>Please sign in or make an account.</div>
+        <button onClick={handleToHomeClick}>Return Home</button>
+      </>
+    )
+  } else {
     const userId = Auth.getProfile().data._id
     if (userId !== data.pet.owner._id ) {
       return (
         <>
-          <div>Only the pet's owner can view this! Please return to the homepage!</div>
+          <div>Only the pet's owner can view this. Please return to the homepage.</div>
           <button onClick={handleToHomeClick}>Return Home</button>
         </>
       )
     }
-  } else if (!Auth.getToken()) {
-    return (
-      <>
-        <div>You must be signed in as the pet's owner to view this page!</div>
-        <button onClick={handleToHomeClick}>Return Home</button>
-      </>
-    )
   }
 
   return (
     <div>
       <h1>PLACEHOLDER FROM PARENT</h1>
-      <HealthMap pet={data.pet}/>
-      <HealthInfo pet={data.pet}/>
+      <HealthMap pet={data.pet} pin={{pinState, readyPin}} />
+      <HealthInfo pet={data.pet} pin={{pinState, readyPin}}/>
     </div>
   )
 }
