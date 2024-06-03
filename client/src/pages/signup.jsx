@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { CREATE_OWNER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
+import "./signup.css";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -41,18 +42,27 @@ const Signup = () => {
 
   // Placeholder Form for Sign Up
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+  <main className="main" style={{ minHeight: "100vh", minWidth: "100vh" }}>
+  <div className="ui grid" style={{ minHeight: "100vh", minWidth: "100vh" }}>
+    <div className="left floated seven wide column">
+      <h4 className="header">Welcome!</h4>
+      <div className="description">
+        <p class="text">We are glad you are here! Please sign up to continue.</p>
+      </div>
+    </div>
+    <div className="right floated seven wide column">
+      <h4 className="header">Sign Up</h4>
+      <div className="description">
             {data ? (
               <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form className="ui form" onSubmit={handleFormSubmit}>
+                <div className="field">
+                <label>Username</label>
+                <div class="ui left icon input">
                 <input
                   className="form-input"
                   placeholder="Your username"
@@ -61,6 +71,13 @@ const Signup = () => {
                   value={formState.username}
                   onChange={handleChange}
                 />
+                <i class="user icon"></i>
+                </div>
+                </div>
+
+                <div className="field">
+                <label>Email</label>
+                <div class="ui left icon input">
                 <input
                   className="form-input"
                   placeholder="Your email"
@@ -69,6 +86,13 @@ const Signup = () => {
                   value={formState.email}
                   onChange={handleChange}
                 />
+                <i class="envelope icon"></i>
+                </div>
+                </div>
+
+                <div className="field">
+                <label>Password</label>
+          <div class="ui left icon input">
                 <input
                   className="form-input"
                   placeholder="******"
@@ -77,6 +101,9 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                 <i class="lock icon"></i>
+                </div>
+                </div>
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}
@@ -86,6 +113,7 @@ const Signup = () => {
                 </button>
               </form>
             )}
+              </div>
 
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
@@ -94,7 +122,6 @@ const Signup = () => {
             )}
           </div>
         </div>
-      </div>
     </main>
   );
 };

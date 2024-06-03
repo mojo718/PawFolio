@@ -14,13 +14,13 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            <div className="buttons">
-                <button onClick={handleLoginClick}>Login</button>
-                <button onClick={handleSignUpClick}>Sign Up</button>
-            </div>
             <div className="description">
                 <h1>Welcome to Our Site</h1>
                 <p>This is a brief description about the site.</p>
+            </div>
+            <div className="buttons">
+                <button onClick={handleLoginClick}>Login</button>
+                <button onClick={handleSignUpClick}>Sign Up</button>
             </div>
 
             <div className="logo">
