@@ -19,7 +19,15 @@ const seedPet = async (owners) => {
         "owner": owners[0],
         "health": 
           {
-            "allergies": "egg",
+            "allergies": 
+              [
+                {
+                  "name": "egg"
+                },
+                {
+                  "name": "bees"
+                }
+              ],
             "vet": 
               {
                 "vetName": "Dr. Shou Tucker",
@@ -28,7 +36,8 @@ const seedPet = async (owners) => {
             "diagnosis":
               {
                 "issue": "rash",
-                "location": "lower left torso"
+                "location": "lower left torso",
+                "pinPosition": "42.40x51.07"
               },
           }
       },

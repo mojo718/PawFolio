@@ -22,6 +22,8 @@ const petSchema = new Schema(
     species: {
       type: String,
       required: true,
+      trim: true,
+      uppercase: true
     },
     breed: {
       type: String,

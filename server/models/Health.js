@@ -1,8 +1,17 @@
 const { Schema, Types } = require('mongoose');
 
+const allergySchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true
+    }
+  }
+)
+
 const vetSchema = new Schema(
   {
-    vetName: {
+    name: {
       type: String
     },
     location: {
@@ -31,10 +40,10 @@ const diagSchema = new Schema(
     },
     location: {
       type: String
+    },
+    pinPosition: {
+      type: String
     }
-  },
-  {
-    _id: false
   }
 )
 
@@ -55,9 +64,7 @@ const notesSchema = new Schema(
 
 const healthSchema = new Schema(
   {
-    allergies: {
-      type: String
-    },
+    allergies: [allergySchema],
     vet: [vetSchema],
     diagnosis: [diagSchema],
     notes: [notesSchema]

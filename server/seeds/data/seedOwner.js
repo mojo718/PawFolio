@@ -5,9 +5,9 @@ const seedOwner = async () => {
   const seededOwners = await Owner.create(
     [
       {
-        "username": "john_doe",
-        "email": "john.doe@example.com",
-        "password": "password123",
+        "username": "dummy5",
+        "email": "dummy5@dummy5.com",
+        "password": "dummy5",
       },
       {
         "username": "jane_smith",
@@ -18,7 +18,6 @@ const seedOwner = async () => {
   )
 
   console.log('----------Owner data seeded!----------');
-  console.log(seededOwners)
   return seededOwners;
 }
 

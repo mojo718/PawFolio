@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-// import tempLogo from '../assets/tempLogo.jpg'
+import tempLogo from '../assets/tempLogo.jpg'
 
 const Home = () => {
     const navigate = useNavigate();
@@ -14,10 +14,6 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            <div className="logo">
-                {/* <img src={tempLogo} alt="Logo" /> */}
-            </div>
-
             <div className="buttons">
                 <button onClick={handleLoginClick}>Login</button>
                 <button onClick={handleSignUpClick}>Sign Up</button>
@@ -25,6 +21,10 @@ const Home = () => {
             <div className="description">
                 <h1>Welcome to Our Site</h1>
                 <p>This is a brief description about the site.</p>
+            </div>
+
+            <div className="logo">
+                <img src={tempLogo} style={{border:"1px solid black"}} alt="Logo" />
             </div>
         </div>
     );

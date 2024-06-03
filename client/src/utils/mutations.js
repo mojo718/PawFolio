@@ -32,7 +32,7 @@ export const ADD_PET = gql`
       petCount
     }
   }
-`
+`;
 
 export const REMOVE_PET = gql`
   mutation Mutation($petId: String!) {
@@ -42,4 +42,76 @@ export const REMOVE_PET = gql`
       petCount
     }
   }
-`
+`;
+
+export const UPDATE_PET = gql`
+  mutation updatePet($petId: String!, $species: String, $name: String, $pic: String, $bio: String, $breed: String, $age: Int) {
+    updatePet(petId: $petId, species: $species, name: $name, pic: $pic, bio: $bio, breed: $breed, age: $age) {
+      _id
+      name
+    }
+  }
+`;
+
+export const ADD_DIAG = gql`
+  mutation Mutation($petId: String!, $issue: String!, $location: String, $endDate: String, $startDate: String) {
+    addDiag(petId: $petId, issue: $issue, location: $location, endDate: $endDate, startDate: $startDate) {
+      _id
+      name
+      health {
+        diagnosis {
+          issue
+          location
+        }
+      }
+    }
+  }
+`;
+
+export const REMOVE_DIAG = gql`
+  mutation RemoveDiag($petId: String!, $diagId: String!) {
+    removeDiag(petId: $petId, diagId: $diagId) {
+      _id
+      name
+      health {
+        diagnosis {
+          _id
+          issue
+          location
+        }
+      }
+    }
+  }
+`;
+
+export const SET_PIN = gql`
+  mutation setPin($petId: String!, $diagId: String!, $pinPosition: String!) {
+    setPin(petId: $petId, diagId: $diagId, pinPosition: $pinPosition) {
+      _id
+      name
+      health {
+        diagnosis {
+          _id
+          issue
+          pinPosition
+        }
+      }
+    }
+  }
+`;
+
+export const REMOVE_PIN = gql`
+  mutation removePin($petId: String!, $diagId: String!) {
+    removePin(petId: $petId, diagId: $diagId) {
+      _id
+      name
+      health {
+        diagnosis {
+          _id
+          issue
+          pinPosition
+        }
+      }
+    }
+  }
+`;

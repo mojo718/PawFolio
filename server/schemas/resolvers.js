@@ -1,6 +1,5 @@
 const { Owner, Pet } = require('../models')
 const { signToken, AuthenticationError } = require('../utils/auth')
-const ObjectId = require('mongoose');
 
 const resolvers = {
   Query: {
@@ -8,7 +7,7 @@ const resolvers = {
       return Owner.find({}).populate('pets');
     },
     pet: async (parent, { petId }) => {
-      return Pet.findById(petId).populate('owner').populate('events')
+      return Pet.findById(petId).populate('owner').populate('events');
     },
     me: async(parents, args, context) => {
       if (context.user) {
@@ -64,6 +63,76 @@ const resolvers = {
         )
 
         return owner;
+      }
+      throw AuthenticationError;
+    },
+    updatePet: async (parent, { petId, ...rest }, context) => { 
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { ...rest },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    // Used for testing; Unused in client-side
+    addAllergy: async (parent, { petId, name }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { "health.allergies": { name } } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    addDiag: async (parent, { petId, ...rest }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { "health.diagnosis": { ...rest } } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    removeDiag: async (parent, { petId, diagId }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $pull: { "health.diagnosis": { _id: diagId } } },
+          { runValidators: true, new: true }
+        )
+        return pet
+      }
+      throw AuthenticationError;
+    },
+    setPin: async (parent, { petId, diagId, pinPosition }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId, "health.diagnosis._id": diagId },
+          { $set: { "health.diagnosis.$.pinPosition": pinPosition}},
+          { runValidators: true, new: true }
+        )
+        return pet
+      }
+      throw AuthenticationError;
+    },
+    removePin: async (parent, { petId, diagId }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId, "health.diagnosis._id": diagId },
+          { $unset: { "health.diagnosis.$.pinPosition": "" }},
+          { runValidators: true, new: true }
+        )
+        return pet
       }
       throw AuthenticationError;
     }

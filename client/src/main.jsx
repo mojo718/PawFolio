@@ -8,7 +8,6 @@ import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import HealthJournal from './pages/healthJournal.jsx';
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
       //   element: <Profile />
       // }, 
       {
-        path: '/health',
+        path: '/health/:petId',
         element: <HealthJournal />
       }
     ]
