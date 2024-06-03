@@ -7,6 +7,7 @@ import App from './App.jsx'
 import Home from './pages/home.jsx'
 import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
+import Profile from './pages/profile.jsx'
 import HealthJournal from './pages/healthJournal.jsx';
 import Footer from './components/footer.jsx';
 const router = createBrowserRouter([
@@ -25,10 +26,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       }, 
-      // {
-      //   path: '/profiles/:username',
-      //   element: <Profile />
-      // }, 
+      {
+        path: '/profile',
+        element: <Profile />
+      }, 
       {
         path: '/health/:petId',
         element: <HealthJournal />
