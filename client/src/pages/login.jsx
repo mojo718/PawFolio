@@ -61,8 +61,8 @@ const Login = () => {
           <div className="description">
             {data ? (
               <p>
-                Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                Success!
+                <Link to="/profile"></Link>
               </p>
             ) : (
               <form className="ui form" onSubmit={handleFormSubmit}>
