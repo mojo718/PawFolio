@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import 'semantic-ui-css/semantic.min.css'; // Import Semantic UI CSS
 import './index.css'
 
 import App from './App.jsx'
@@ -7,7 +8,7 @@ import Home from './pages/home.jsx'
 import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import HealthJournal from './pages/healthJournal.jsx';
-
+import Footer from './components/footer.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
