@@ -1,7 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// TODO: Add virtual for easily understood datetime
-
 const eventSchema = new Schema(
   {
     title: {
@@ -41,6 +39,14 @@ const eventSchema = new Schema(
     },
   }
 );
+
+// TODO: Add virtual for easily understood datetime
+eventSchema.virtual('readableStartTime').get(function () {
+  return moment(this.startTime).format('MM DD YYYY');
+});
+
+eventSchema.set('toJSON', { virtuals: true });
+eventSchema.set('toObject', { virtuals: true });
 
 const Event = model('Event', eventSchema);
 

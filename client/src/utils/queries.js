@@ -35,7 +35,7 @@ export const QUERY_PET = gql`
       }
     }
   }
-;`
+`;
 
 // Currently unused
 // export const QUERY_PROFILE = gql`
