@@ -9,11 +9,12 @@ const resolvers = {
     pet: async (parent, { petId }) => {
       return Pet.findById(petId).populate('owner').populate('events');
     },
-    me: async(parents, args, context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
-        return Owner.findOne({ _id: context.user._id });
+        const userData = await Owner.findOne({ _id: context.user._id }).populate('pets');
+        return userData;
       }
-      throw AuthenticationError;
+      throw new AuthenticationError('Not logged in');
     }
   },
 

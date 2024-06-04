@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate
 import { useMutation } from '@apollo/client';
 import { CREATE_OWNER } from '../utils/mutations';
 
@@ -14,6 +13,7 @@ const Signup = () => {
     password: '',
   });
   const [addOwner, { error, data }] = useMutation(CREATE_OWNER);
+  const navigate = useNavigate();  // Initialize useNavigate
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -35,6 +35,7 @@ const Signup = () => {
       });
 
       Auth.login(data.createOwner.token);
+      navigate('/profile', { state: { owner: data.createOwner.owner, pet: data.createOwner.owner.pet } });  // Redirect to Profile with data
     } catch (e) {
       console.error(e);
     }
@@ -42,67 +43,67 @@ const Signup = () => {
 
   // Placeholder Form for Sign Up
   return (
-  <main className="main" style={{ minHeight: "100vh", minWidth: "100vh" }}>
-  <div className="ui grid" style={{ minHeight: "100vh", minWidth: "100vh" }}>
-    <div className="left floated seven wide column">
-      <h4 className="header">Welcome!</h4>
-      <div className="description">
-        <p class="text">We are glad you are here! Please sign up to continue.</p>
-      </div>
-    </div>
-    <div className="right floated seven wide column">
-      <h4 className="header">Sign Up</h4>
-      <div className="description">
+    <main className="main" style={{ minHeight: "100vh", minWidth: "100vh" }}>
+      <div className="ui grid" style={{ minHeight: "100vh", minWidth: "100vh" }}>
+        <div className="left floated seven wide column">
+          <h4 className="header">Welcome!</h4>
+          <div className="description">
+            <p className="text">We are glad you are here! Please sign up to continue.</p>
+          </div>
+        </div>
+        <div className="right floated seven wide column">
+          <h4 className="header">Sign Up</h4>
+          <div className="description">
             {data ? (
               <p>
                 Success!
-                <Link to="/profile"></Link>
+                <Link to="/profile">Go to Profile</Link>
               </p>
             ) : (
               <form className="ui form" onSubmit={handleFormSubmit}>
                 <div className="field">
-                <label>Username</label>
-                <div class="ui left icon input">
-                <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="username"
-                  type="text"
-                  value={formState.username}
-                  onChange={handleChange}
-                />
-                <i class="user icon"></i>
-                </div>
-                </div>
-
-                <div className="field">
-                <label>Email</label>
-                <div class="ui left icon input">
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <i class="envelope icon"></i>
-                </div>
+                  <label>Username</label>
+                  <div className="ui left icon input">
+                    <input
+                      className="form-input"
+                      placeholder="Your username"
+                      name="username"
+                      type="text"
+                      value={formState.username}
+                      onChange={handleChange}
+                    />
+                    <i className="user icon"></i>
+                  </div>
                 </div>
 
                 <div className="field">
-                <label>Password</label>
-          <div class="ui left icon input">
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                 <i class="lock icon"></i>
+                  <label>Email</label>
+                  <div className="ui left icon input">
+                    <input
+                      className="form-input"
+                      placeholder="Your email"
+                      name="email"
+                      type="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                    />
+                    <i className="envelope icon"></i>
+                  </div>
                 </div>
+
+                <div className="field">
+                  <label>Password</label>
+                  <div className="ui left icon input">
+                    <input
+                      className="form-input"
+                      placeholder="******"
+                      name="password"
+                      type="password"
+                      value={formState.password}
+                      onChange={handleChange}
+                    />
+                    <i className="lock icon"></i>
+                  </div>
                 </div>
                 <button
                   className="btn btn-block btn-primary"
@@ -113,15 +114,15 @@ const Signup = () => {
                 </button>
               </form>
             )}
-              </div>
-
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
           </div>
+
+          {error && (
+            <div className="my-3 p-3 bg-danger text-white">
+              {error.message}
+            </div>
+          )}
         </div>
+      </div>
     </main>
   );
 };
