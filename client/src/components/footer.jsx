@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-      <i class="copyright outline icon"></i>
+      <i className="copyright outline icon"></i>
         <p>All rights reserved</p>
       </div>
     </footer>

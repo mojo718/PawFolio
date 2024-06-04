@@ -11,8 +11,16 @@ function PetProfile({ petId }) {
   const [showEvents, setShowEvents] = useState(false);
   const [showHealthLog, setShowHealthLog] = useState(false);
 
-  const toggleInfo = () => setShowInfo(!showInfo);
-  const toggleEvents = () => setShowEvents(!showEvents);
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
+    setShowEvents(false)
+  }
+  
+  const toggleEvents = () => {
+    setShowEvents(!showEvents);
+    setShowInfo(false)
+  }
+
   const toggleHealthLog = () => setShowHealthLog(!showHealthLog);
 
   if (loading) return <p>Loading...</p>;

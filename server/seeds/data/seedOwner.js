@@ -10,9 +10,9 @@ const seedOwner = async () => {
         "password": "dummy5",
       },
       {
-        "username": "jane_smith",
-        "email": "jane.smith@example.com",
-        "password": "password123",
+        "username": "dummy6",
+        "email": "dummy6@dummy6.com",
+        "password": "dummy6",
       }
     ]
   )
