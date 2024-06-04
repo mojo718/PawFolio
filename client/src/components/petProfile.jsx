@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import './PetProfile.css'; // Assuming you will use a CSS file for styling
 
 const PetProfile = ({ pet }) => {
+
   const [showInformation, setShowInformation] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
   const [showHealthLog, setShowHealthLog] = useState(false);

@@ -18,7 +18,7 @@ const Home = () => {
                 <h1>Welcome to Our Site</h1>
                 <p>This is a brief description about the site.</p>
             </div>
-            <div className="buttons">
+            <div className="button">
                 <button onClick={handleLoginClick}>Login</button>
                 <button onClick={handleSignUpClick}>Sign Up</button>
             </div>

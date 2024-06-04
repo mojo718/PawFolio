@@ -33,6 +33,10 @@ export const QUERY_PET = gql`
         _id
         title
       }
+      friends {
+        _id
+        name
+      }
     }
   }
 `;

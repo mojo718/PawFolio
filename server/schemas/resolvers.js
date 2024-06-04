@@ -7,7 +7,7 @@ const resolvers = {
       return Owner.find({}).populate('pets');
     },
     pet: async (parent, { petId }) => {
-      return Pet.findById(petId).populate('owner').populate('events');
+      return Pet.findById(petId).populate('owner').populate('events').populate('friends');
     },
     me: async(parents, args, context) => {
       if (context.user) {
@@ -63,6 +63,30 @@ const resolvers = {
         )
 
         return owner;
+      }
+      throw AuthenticationError;
+    },
+    addFriend: async (parent, { petId, friendId } , context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { friends: friendId } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    removeFriend: async (parent, { petId, friendId }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $pull: { friends: friendId } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
       }
       throw AuthenticationError;
     },
