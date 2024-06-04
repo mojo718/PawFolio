@@ -115,3 +115,7 @@ export const REMOVE_PIN = gql`
     }
   }
 `;
+
+export const ADD_EVENT = gql``;
+
+export const REMOVE_EVENT = gql``

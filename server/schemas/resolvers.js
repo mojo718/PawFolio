@@ -9,7 +9,7 @@ const resolvers = {
     pet: async (parent, { petId }) => {
       return Pet.findById(petId).populate('owner').populate('events').populate('friends');
     },
-    me: async(parents, args, context) => {
+    me: async(parent, args, context) => {
       if (context.user) {
         return Owner.findOne({ _id: context.user._id });
       }
