@@ -10,7 +10,7 @@ import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import Profile from './pages/profile.jsx'
 import HealthJournal from './pages/healthJournal.jsx';
-import Footer from './components/footer.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
