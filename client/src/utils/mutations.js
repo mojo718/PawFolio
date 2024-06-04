@@ -55,6 +55,30 @@ export const UPDATE_PET = gql`
   }
 `;
 
+export const ADD_FRIEND = gql`
+  mutation addFriend($petId: String!, $friendId: String!) {
+    addFriend(petId: $petId, friendId: $friendId) {
+      _id
+      name
+      friends {
+        _id
+      }
+    }
+  }
+`;
+
+export const REMOVE_FRIEND = gql`
+  mutation RemovePet($petId: String!, $friendId: String!) {
+    removeFriend(petId: $petId, friendId: $friendId) {
+      _id
+      name
+      friends {
+        _id
+      }
+    }
+  }
+`;
+
 export const ADD_DIAG = gql`
   mutation Mutation($petId: String!, $issue: String!, $location: String, $endDate: String, $startDate: String) {
     addDiag(petId: $petId, issue: $issue, location: $location, endDate: $endDate, startDate: $startDate) {

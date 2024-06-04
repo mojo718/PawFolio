@@ -80,6 +80,30 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    addFriend: async (parent, { petId, friendId } , context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { friends: friendId } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    removeFriend: async (parent, { petId, friendId }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $pull: { friends: friendId } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
     // Used for testing; Unused in client-side
     addAllergy: async (parent, { petId, name }, context) => {
       if (context.user) {
