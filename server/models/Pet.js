@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const healthSchema = require('./Health');
+const { v4: uuidv4 } = require('uuid');
 
 // TO CONSIDER: Change age to birthday then add a virtual to convert to age when needed
 // NOTE: picLink may not work yet, need testing
@@ -10,6 +11,13 @@ const petSchema = new Schema(
       type: String,
       trim: true,
       default: "Unnamed"
+    },
+    username: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+      default: uuidv4()
     },
     pic: {
       type: String,
@@ -44,6 +52,12 @@ const petSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Event',
       },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Pet'
+      }
     ],
   }
 );

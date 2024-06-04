@@ -19,6 +19,7 @@ const typeDefs = `
     health: Health
     owner: Owner
     events: [Event]
+    friends: [Pet]
   }
 
   type Health {
@@ -65,7 +66,7 @@ const typeDefs = `
     createdAt: String
   }
 
-  type Auth {
+   type Auth {
     token: ID!
     owner: Owner
   }
@@ -81,14 +82,16 @@ const typeDefs = `
     createOwner(username: String!, email: String!, password: String!): Auth
     addPet(name: String, pic: String, bio: String, species: String!, breed: String, age: Int, adoptionDate: String): Owner
     removePet(petId: String!): Owner
+    addFriend(petId: String!, friendId: String!): Pet
+    removeFriend(petId: String!, friendId: String!): Pet
+    addEvent(petId: ID!, title: String!, startTime: String, location: String, status: String, notes: String): Pet
+    removeEvent(petId: ID!, eventId: ID!): Pet
     updatePet(petId: String!, name: String, pic: String, bio: String, species: String, breed: String, age: Int, adoptionDate: String): Pet
     addAllergy(petId: String!, name: String!): Pet
     addDiag(petId: String!, issue: String!, startDate: String, endDate: String, location: String): Pet
     removeDiag(petId: String!, diagId: String!): Pet
     setPin(petId: String!, diagId: String!, pinPosition: String!): Pet
     removePin(petId: String!, diagId: String!): Pet
-    addEvent(petId: ID!, title: String!, description: String!, date: String!): Pet
-    removeEvent(petId: ID!, eventId: ID!): Pet
   }
 `;
 

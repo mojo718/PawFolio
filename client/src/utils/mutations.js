@@ -55,6 +55,30 @@ export const UPDATE_PET = gql`
   }
 `;
 
+export const ADD_FRIEND = gql`
+  mutation addFriend($petId: String!, $friendId: String!) {
+    addFriend(petId: $petId, friendId: $friendId) {
+      _id
+      name
+      friends {
+        _id
+      }
+    }
+  }
+`;
+
+export const REMOVE_FRIEND = gql`
+  mutation RemovePet($petId: String!, $friendId: String!) {
+    removeFriend(petId: $petId, friendId: $friendId) {
+      _id
+      name
+      friends {
+        _id
+      }
+    }
+  }
+`;
+
 export const ADD_DIAG = gql`
   mutation Mutation($petId: String!, $issue: String!, $location: String, $endDate: String, $startDate: String) {
     addDiag(petId: $petId, issue: $issue, location: $location, endDate: $endDate, startDate: $startDate) {
@@ -117,3 +141,39 @@ export const REMOVE_PIN = gql`
     }
   }
 `;
+
+export const ADD_EVENT = gql`
+  mutation Mutation($petId: ID!, $title: String!, $location: String, $status: String, $notes: String) {
+    addEvent(petId: $petId, title: $title, location: $location, status: $status, notes: $notes) {
+      _id
+      name
+      events {
+        _id
+        title
+        type
+        location
+        startTime
+        status
+        notes
+      }
+    }
+  }
+`;
+
+export const REMOVE_EVENT = gql`
+  mutation Mutation($petId: ID!, $eventId: ID!) {
+    removeEvent(petId: $petId, eventId: $eventId) {
+      _id
+      name
+      events {
+        _id
+        title
+        type
+        location
+        startTime
+        status
+        notes
+      }
+    }
+  }
+`

@@ -14,11 +14,7 @@ const HealthJournal = () => {
   })
 
   const [pinState, readyPin] = useState('')
-
-  if (data) {
-    console.log(data)
-  }
-  
+ 
   // NOTE: All pet health data gets pulled at this point, along with info needed for authentification
   // This was done to reduce the amount of transactions with the database
   // This might be a privacy issue and should be refactored in the future
@@ -31,25 +27,24 @@ const HealthJournal = () => {
     return <div>Trying to fetch pet data...</div>;
   }
 
-  // Auth that only allows owner to view pet health info
-  // Checks for 'id_token', decodes it if it exists pr expired, then compares token id with pet owner id
-  if (!Auth.getToken() || Auth.isTokenExpired(Auth.getToken()) === true) {
+  // Auth to check if user is logged on
+  if (!Auth.loggedIn()) {
     return (
       <>
         <div>Please sign in or make an account.</div>
         <button onClick={handleToHomeClick}>Return Home</button>
       </>
     )
-  } else {
-    const userId = Auth.getProfile().data._id
-    if (userId !== data.pet.owner._id ) {
-      return (
-        <>
-          <div>Only the pet's owner can view this. Please return to the homepage.</div>
-          <button onClick={handleToHomeClick}>Return Home</button>
-        </>
-      )
-    }
+  }
+
+  // Auth that checks that user ID matches the owner ID from the database
+  if (Auth.getProfile().data._id !== data.pet.owner._id ) {
+    return (
+      <>
+        <div>Only the pet's owner can view this. Please return to the homepage.</div>
+        <button onClick={handleToHomeClick}>Return Home</button>
+      </>
+    )
   }
 
   return (

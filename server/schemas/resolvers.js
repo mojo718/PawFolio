@@ -8,7 +8,7 @@ const resolvers = {
       return Owner.find({}).populate('pets');
     },
     pet: async (parent, { petId }) => {
-      return Pet.findById(petId).populate('owner').populate('events');
+      return Pet.findById(petId).populate('owner').populate('events').populate('friends');
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -80,6 +80,30 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    addFriend: async (parent, { petId, friendId } , context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { friends: friendId } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
+    removeFriend: async (parent, { petId, friendId }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $pull: { friends: friendId } },
+          { runValidators: true, new: true }
+        )
+
+        return pet;
+      }
+      throw AuthenticationError;
+    },
     // Used for testing; Unused in client-side
     addAllergy: async (parent, { petId, name }, context) => {
       if (context.user) {
@@ -138,9 +162,9 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    addEvent: async (parent, { petId, title, description, date }, context) => {
+    addEvent: async (parent, { petId, ...rest  }, context) => {
       if (context.user) {
-        const event = await Event.create({ title, description, date });
+        const event = await Event.create({ ...rest });
         const pet = await Pet.findOneAndUpdate(
           { _id: petId },
           { $addToSet: { events: event._id } },

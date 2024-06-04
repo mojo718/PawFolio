@@ -41,7 +41,6 @@ export default function HealthInfo({ pet, pin }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState)
 
     try { 
       await updatePet({
@@ -77,7 +76,7 @@ export default function HealthInfo({ pet, pin }) {
 
   const handleDiagSubmit = async (event) => {
     event.preventDefault();
-    console.log(formDiagState)
+
     try {
       await addDiag({
         variables: { ...formDiagState, petId: pet._id}
@@ -89,7 +88,6 @@ export default function HealthInfo({ pet, pin }) {
   }
 
   const handleRemoveDiag = async (event) => {
-    console.log(event.target.dataset.id)
     try {
       await removeDiag({
         variables: { petId: pet._id, diagId: event.target.dataset.id }
@@ -104,7 +102,6 @@ export default function HealthInfo({ pet, pin }) {
   const [removePin] = useMutation(REMOVE_PIN, {refetchQueries: [QUERY_PET_HEALTH]});
 
   const handleReadyPin = async (event) => {
-    console.log("pinState", pin.pinState)
     if (pin.pinState) {
       pin.readyPin('')
     } else {
@@ -113,7 +110,6 @@ export default function HealthInfo({ pet, pin }) {
   }
 
   const handleRemovePin = async (event) => {
-    console.log(event.target.dataset.id)
     try {
       await removePin({
         variables: { petId: pet._id, diagId: event.target.dataset.id }
@@ -123,7 +119,7 @@ export default function HealthInfo({ pet, pin }) {
     }
   }
 
-    return (
+  return (
     <div style={{ border: '1px solid black' }}>
       {formEdit ? (
         <>
@@ -146,39 +142,39 @@ export default function HealthInfo({ pet, pin }) {
           <button style={{ backgroundColor: "grey" }} onClick={handleFormToggle}>Edit Pet Info</button>
         </>
       )}
-        <div style={{ border: '1px solid red', margin: '5px' }}>
-          <h4>Diagnoses:</h4>
-          {formDiag ? (
-            <>
-              <form onSubmit={handleDiagSubmit}>
-                Issue: <input type="text" placeholder="Issue" name="issue" value={formDiagState.issue} onChange={handleDiagChange}/>
-                Location: <input type="text" placeholder="Location" name="location" value={formDiagState.location} onChange={handleDiagChange}></input>
-                <button type="submit" style={{ backgroundColor: "grey" }}>Add Issue</button>
-              </form>
-              <button style={{ backgroundColor: "grey" }} onClick={handleDiagToggle}>Discard Issue</button>
-            </>
-          ) : (
-            <>
-              <button style={{ backgroundColor: "grey" }} onClick={handleDiagToggle}>Add an Issue</button>
-            </>
-          )}
-          {pet.health.diagnosis.map((item) => (
-            <div key={item._id} style={{ border: '1px solid black', margin:'5px' }}>
-              <p>Issue: {item.issue}</p>
-              <p>Location: {item.location}</p>
-              {item.pinPosition ? (
-                <>
-                  <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleRemovePin}>Remove Pin</button>
-                </>
-              ) : (
-                <>
-                  <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleReadyPin}>{pin.pinState ? 'Setting Pin. Click to Cancel' : 'Add Pin'}</button>
-                </>
-              )}
-              <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleRemoveDiag}>Remove This Issue</button>
-            </div>
-          ))}
-        </div>
+      <div style={{ border: '1px solid red', margin: '5px' }}>
+        <h4>Diagnoses:</h4>
+        {formDiag ? (
+          <>
+            <form onSubmit={handleDiagSubmit}>
+              Issue: <input type="text" placeholder="Issue" name="issue" value={formDiagState.issue} onChange={handleDiagChange}/>
+              Location: <input type="text" placeholder="Location" name="location" value={formDiagState.location} onChange={handleDiagChange}></input>
+              <button type="submit" style={{ backgroundColor: "grey" }}>Add Issue</button>
+            </form>
+            <button style={{ backgroundColor: "grey" }} onClick={handleDiagToggle}>Discard Issue</button>
+          </>
+        ) : (
+          <>
+            <button style={{ backgroundColor: "grey" }} onClick={handleDiagToggle}>Add an Issue</button>
+          </>
+        )}
+        {pet.health.diagnosis.map((item) => (
+          <div key={item._id} style={{ border: '1px solid black', margin:'5px' }}>
+            <p>Issue: {item.issue}</p>
+            <p>Location: {item.location}</p>
+            {item.pinPosition ? (
+              <>
+                <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleRemovePin}>Remove Pin</button>
+              </>
+            ) : (
+              <>
+                <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleReadyPin}>{pin.pinState ? 'Setting Pin. Click to Cancel' : 'Add Pin'}</button>
+              </>
+            )}
+            <button style={{ backgroundColor: "grey" }} data-id={item._id} onClick={handleRemoveDiag}>Remove This Issue</button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
