@@ -82,6 +82,22 @@ export const QUERY_PET_HEALTH = gql`
 `;
 
 // Currently unused
+
+// export const QUERY_PET_EVENTS = gql`
+//   query getPetEvents($petId: ID!) {
+//     pet(id: $petId) {
+//       _id
+//       name
+//       events {
+//         _id
+//         title
+//         description
+//         date
+//       }
+//     }
+//   }
+// `;
+
 // export const QUERY_PROFILE = gql`
 //   query user($username: String!) {
 //     user(username: $username) {

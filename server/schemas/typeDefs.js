@@ -87,6 +87,8 @@ const typeDefs = `
     removeDiag(petId: String!, diagId: String!): Pet
     setPin(petId: String!, diagId: String!, pinPosition: String!): Pet
     removePin(petId: String!, diagId: String!): Pet
+    addEvent(petId: ID!, title: String!, description: String!, date: String!): Pet
+    removeEvent(petId: ID!, eventId: ID!): Pet
   }
 `;
 

@@ -62,48 +62,49 @@ const Signup = () => {
             ) : (
               <form className="ui form" onSubmit={handleFormSubmit}>
                 <div className="field">
-                  <label>Username</label>
-                  <div className="ui left icon input">
-                    <input
-                      className="form-input"
-                      placeholder="Your username"
-                      name="username"
-                      type="text"
-                      value={formState.username}
-                      onChange={handleChange}
-                    />
-                    <i className="user icon"></i>
-                  </div>
+                <label class="label">Username</label>
+                <div class="ui left icon input">
+                <input
+                  className="form-input"
+                  placeholder="Your username"
+                  name="username"
+                  type="text"
+                  value={formState.username}
+                  onChange={handleChange}
+                />
+                <i class="user icon"></i>
+                </div>
                 </div>
 
                 <div className="field">
-                  <label>Email</label>
-                  <div className="ui left icon input">
-                    <input
-                      className="form-input"
-                      placeholder="Your email"
-                      name="email"
-                      type="email"
-                      value={formState.email}
-                      onChange={handleChange}
-                    />
-                    <i className="envelope icon"></i>
-                  </div>
+                <label class="label">Email</label>
+                <div class="ui left icon input">
+                <input
+                  className="form-input"
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                <i class="envelope icon"></i>
+                </div>
                 </div>
 
                 <div className="field">
-                  <label>Password</label>
-                  <div className="ui left icon input">
-                    <input
-                      className="form-input"
-                      placeholder="******"
-                      name="password"
-                      type="password"
-                      value={formState.password}
-                      onChange={handleChange}
-                    />
-                    <i className="lock icon"></i>
-                  </div>
+                <label class="label">Password</label>
+          <div class="ui left icon input">
+                <input
+                  className="form-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                 <i class="lock icon"></i>
+                </div>
+
                 </div>
                 <button
                   className="btn btn-block btn-primary"
