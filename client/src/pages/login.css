@@ -14,6 +14,7 @@
 
 .text {
     font-size: 1em;
+    text-align: left;
 }
 
 .field {
@@ -23,4 +24,45 @@
 .ui.button.primary {
     background-color: #E43D12;
     color: #EBE9E1;
+}
+
+@media (max-width: 1024px) {
+    .ui.grid {
+        display: flex;
+        flex-direction: column; /* Use column direction for stacking items vertically */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .left.floated.seven.wide.column,
+    .right.floated.seven.wide.column {
+        width: 100% !important;
+        float: none !important; /* Override Semantic UI's float */
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column; /* Ensure the column itself uses column direction */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .left.floated.seven.wide.column .header,
+    .right.floated.seven.wide.column .header {
+        margin: 0;
+        text-align: center;
+    }
+
+    .left.floated.seven.wide.column .description,
+    .right.floated.seven.wide.column .description {
+        width: 100%;
+        text-align: center;
+    }
+
+    .text {
+        text-align: center;
+        padding: 20px;
+    }
 }

@@ -1,19 +1,22 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ME = gql`
-  query Me {
+  query me {
     me {
-      _id
       username
       email
       petCount
       pets {
         _id
         name
+        species
+        breed
+        age
       }
     }
   }
-`
+`;
+
 
 export const QUERY_PET = gql`
   query pet($petId: String!) {
@@ -83,6 +86,22 @@ export const QUERY_PET_HEALTH = gql`
 `;
 
 // Currently unused
+
+// export const QUERY_PET_EVENTS = gql`
+//   query getPetEvents($petId: ID!) {
+//     pet(id: $petId) {
+//       _id
+//       name
+//       events {
+//         _id
+//         title
+//         description
+//         date
+//       }
+//     }
+//   }
+// `;
+
 // export const QUERY_PROFILE = gql`
 //   query user($username: String!) {
 //     user(username: $username) {

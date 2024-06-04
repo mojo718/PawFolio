@@ -22,8 +22,8 @@ const eventSchema = new Schema(
     },
     type: {
       type: String,
-      enum: ['Vet Visit', 'Grooming', 'Walking', 'Play Date', 'Feeding', 'Other'],
-      required: true,
+      enum: ['Vet Visit', 'Grooming', 'Walking', 'Play Date', 'Feeding'],
+      
     },
     status: {
       type: String,

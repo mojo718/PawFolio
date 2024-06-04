@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
@@ -30,6 +30,7 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
+      navigate('/profile', { state: { owner: data.createOwner.owner, pet: data.createOwner.owner.pet } });
     } catch (e) {
       console.error(e);
     }
@@ -62,7 +63,7 @@ const Login = () => {
             {data ? (
               <p>
                 Success!
-                <Link to="/profile"></Link>
+                <Link to="/profile">Go to Profile</Link>
               </p>
             ) : (
               <form className="ui form" onSubmit={handleFormSubmit}>

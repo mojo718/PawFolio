@@ -25,11 +25,13 @@ export const CREATE_OWNER = gql`
 `;
 
 export const ADD_PET = gql`
-  mutation addPet($name: String, $species: String!, $breed: String, $age: Int) {
+  mutation addPet($name: String!, $species: String!, $breed: String!, $age: Int!) {
     addPet(name: $name, species: $species, breed: $breed, age: $age) {
       _id
-      username
-      petCount
+      name
+      species
+      breed
+      age
     }
   }
 `;
@@ -116,6 +118,38 @@ export const REMOVE_PIN = gql`
   }
 `;
 
-export const ADD_EVENT = gql``;
+export const ADD_EVENT = gql`
+  mutation Mutation($petId: ID!, $title: String!, $location: String, $status: String, $notes: String) {
+    addEvent(petId: $petId, title: $title, location: $location, status: $status, notes: $notes) {
+      _id
+      name
+      events {
+        _id
+        title
+        type
+        location
+        startTime
+        status
+        notes
+      }
+    }
+  }
+`;
 
-export const REMOVE_EVENT = gql``
+export const REMOVE_EVENT = gql`
+  mutation Mutation($petId: ID!, $eventId: ID!) {
+    removeEvent(petId: $petId, eventId: $eventId) {
+      _id
+      name
+      events {
+        _id
+        title
+        type
+        location
+        startTime
+        status
+        notes
+      }
+    }
+  }
+`
