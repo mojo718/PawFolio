@@ -1,13 +1,14 @@
-.footer {
+/* .header {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
+    height: 10%;
     background-color: #E43D12;
     padding: 1em 0;
     text-align: center;
   }
   
-  .footer-content {
-    color: white;
-  }
+  .header-content {
+    color: white; 
+  } */

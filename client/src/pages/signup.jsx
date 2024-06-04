@@ -61,7 +61,7 @@ const Signup = () => {
             ) : (
               <form className="ui form" onSubmit={handleFormSubmit}>
                 <div className="field">
-                <label>Username</label>
+                <label class="label">Username</label>
                 <div class="ui left icon input">
                 <input
                   className="form-input"
@@ -76,7 +76,7 @@ const Signup = () => {
                 </div>
 
                 <div className="field">
-                <label>Email</label>
+                <label class="label">Email</label>
                 <div class="ui left icon input">
                 <input
                   className="form-input"
@@ -91,7 +91,7 @@ const Signup = () => {
                 </div>
 
                 <div className="field">
-                <label>Password</label>
+                <label class="label">Password</label>
           <div class="ui left icon input">
                 <input
                   className="form-input"
