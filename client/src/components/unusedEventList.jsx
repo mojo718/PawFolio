@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations'
 
+/// Current Unused and may not implement
+
 export default function eventList({ pet }) {
 
   const [formEvent, toggleEvent] = useState(false);
