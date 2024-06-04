@@ -23,7 +23,7 @@ const eventSchema = new Schema(
     type: {
       type: String,
       enum: ['Vet Visit', 'Grooming', 'Walking', 'Play Date', 'Feeding'],
-      required: true,
+      
     },
     status: {
       type: String,

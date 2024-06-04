@@ -1,5 +1,6 @@
-const { Owner, Pet } = require('../models')
+const { Owner, Pet, Event } = require('../models')
 const { signToken, AuthenticationError } = require('../utils/auth')
+
 
 const resolvers = {
   Query: {
@@ -9,7 +10,7 @@ const resolvers = {
     pet: async (parent, { petId }) => {
       return Pet.findById(petId).populate('owner').populate('events');
     },
-    me: async(parents, args, context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
         return Owner.findOne({ _id: context.user._id });
       }
@@ -44,7 +45,7 @@ const resolvers = {
 
         const owner = await Owner.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { pets: pet._id }},
+          { $addToSet: { pets: pet._id } },
           { runValidators: true, new: true }
         )
 
@@ -58,7 +59,7 @@ const resolvers = {
 
         const owner = await Owner.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { pets: petId }},
+          { $pull: { pets: petId } },
           { runValidators: true, new: true }
         )
 
@@ -66,7 +67,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    updatePet: async (parent, { petId, ...rest }, context) => { 
+    updatePet: async (parent, { petId, ...rest }, context) => {
       if (context.user) {
         const pet = await Pet.findOneAndUpdate(
           { _id: petId },
@@ -118,7 +119,7 @@ const resolvers = {
       if (context.user) {
         const pet = await Pet.findOneAndUpdate(
           { _id: petId, "health.diagnosis._id": diagId },
-          { $set: { "health.diagnosis.$.pinPosition": pinPosition}},
+          { $set: { "health.diagnosis.$.pinPosition": pinPosition } },
           { runValidators: true, new: true }
         )
         return pet
@@ -129,12 +130,36 @@ const resolvers = {
       if (context.user) {
         const pet = await Pet.findOneAndUpdate(
           { _id: petId, "health.diagnosis._id": diagId },
-          { $unset: { "health.diagnosis.$.pinPosition": "" }},
+          { $unset: { "health.diagnosis.$.pinPosition": "" } },
           { runValidators: true, new: true }
         )
         return pet
       }
       throw AuthenticationError;
+    },
+    addEvent: async (parent, { petId, title, description, date }, context) => {
+      if (context.user) {
+        const event = await Event.create({ title, description, date });
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $addToSet: { events: event._id } },
+          { runValidators: true, new: true }
+        ).populate('events');
+        return pet;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    removeEvent: async (parent, { petId, eventId }, context) => {
+      if (context.user) {
+        await Event.findOneAndDelete({ _id: eventId });
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $pull: { events: eventId } },
+          { runValidators: true, new: true }
+        ).populate('events');
+        return pet;
+      }
+      throw new AuthenticationError('Not logged in');
     }
   }
 }

@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'; // Import Semantic UI CSS
 import './index.css'
+import Events from './components/events.jsx';
 
 import App from './App.jsx'
 import Home from './pages/home.jsx'
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/health/:petId',
         element: <HealthJournal />
+      },
+      {
+        path: '/events/:petId',
+        element: <Events />
       }
     ]
   },
