@@ -7,12 +7,16 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
-const Profile = ({ owner, pet }) => {
+const Profile = () => {
   const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
+
+  
+
+  // console.log(data)
 
   const user = data?.me || data?.user || {};
   // navigate to personal profile page if username is yours
@@ -35,7 +39,7 @@ const Profile = ({ owner, pet }) => {
 
   return (
     <div className="profile-container">
-      <OwnerProfile owner={owner} />
+      <OwnerProfile />
       {/* <PetProfile pet={pet} /> */}
       {/* {pet && <PetProfile petId={pet._id} />} */}
     </div>
