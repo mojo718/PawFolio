@@ -1,5 +1,6 @@
-const { Owner, Pet } = require('../models')
+const { Owner, Pet, Event } = require('../models')
 const { signToken, AuthenticationError } = require('../utils/auth')
+
 
 const resolvers = {
   Query: {
