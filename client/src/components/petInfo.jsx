@@ -24,7 +24,7 @@ function PetInfo({ pet }) {
   }
 
   return (
-    <div className="info-section">
+    <div className="info-section" style={{ padding: "10px"}}>
       <h3>Information</h3>
       <p>Species: {pet.species}</p>
       <p>Breed: {pet.breed}</p>
