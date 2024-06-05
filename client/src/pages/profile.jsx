@@ -8,27 +8,14 @@ import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 const Profile = () => {
-  const { username: userParam } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-  });
-
-  
-
-  // console.log(data)
-
-  const user = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/profile" />;
-  }
+  const { loading, data } = useQuery(QUERY_ME)
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!user?.username) {
+  if (!Auth.loggedIn()) {
     return (
       <h4>
         You need to be logged in to see this. Use the navigation links above to
@@ -39,7 +26,7 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <OwnerProfile />
+      <OwnerProfile data={data}/>
       {/* <PetProfile pet={pet} /> */}
       {/* {pet && <PetProfile petId={pet._id} />} */}
     </div>

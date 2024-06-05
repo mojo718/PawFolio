@@ -104,6 +104,17 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    updateBio: async (parent, { petId, bio }, context) => {
+      if (context.user) {
+        const pet = await Pet.findOneAndUpdate(
+          { _id: petId },
+          { $set: { bio: bio } },
+          { runValidators: true, new: true }
+        )
+        return pet;
+      }
+      throw AuthenticationError;
+    },
     // Used for testing; Unused in client-side
     addAllergy: async (parent, { petId, name }, context) => {
       if (context.user) {
