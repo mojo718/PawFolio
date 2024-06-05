@@ -6,7 +6,9 @@ import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import "./login.css";
 
+
 const Login = () => {
+  const navigate = useNavigate()
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -30,7 +32,7 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
-      navigate('/profile', { state: { owner: data.createOwner.owner, pet: data.createOwner.owner.pet } });
+      // navigate('/profile', { state: { owner: data.createOwner.owner, pet: data.createOwner.owner.pet } });
     } catch (e) {
       console.error(e);
     }
@@ -51,7 +53,7 @@ const Login = () => {
           {/* <div className="content"> */}
           <h4 className="header">Welcome Back!</h4>
           <div className="description">
-            <p class="text">We are glad to see you again! Please log in to continue.</p>
+            <p className="text">We are glad to see you again! Please log in to continue.</p>
           </div>
           {/* </div> */}
         </div>
@@ -69,7 +71,7 @@ const Login = () => {
               <form className="ui form" onSubmit={handleFormSubmit}>
                 <div className="field">
                 <label>Email</label>
-                <div class="ui left icon input">
+                <div className="ui left icon input">
                   <input
                     className="form-input"
                     placeholder="Email"
@@ -78,13 +80,13 @@ const Login = () => {
                     value={formState.email}
                     onChange={handleChange}
                   />
-                  <i class="envelope icon"></i>
+                  <i className="envelope icon"></i>
                 </div>
                 </div>
                 
                 <div className="field">
                 <label>Password</label>
-          <div class="ui left icon input">
+          <div className="ui left icon input">
                   <input
                     className="form-input"
                     placeholder="******"
@@ -93,7 +95,7 @@ const Login = () => {
                     value={formState.password}
                     onChange={handleChange}
                   />
-                  <i class="lock icon"></i>
+                  <i className="lock icon"></i>
                 </div>
                 </div>
                 <button className="ui button primary" type="submit">
@@ -111,7 +113,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {/* <div class="ui vertical divider"></div> */}
+      {/* <div className="ui vertical divider"></div> */}
     </main>
   );
 };
