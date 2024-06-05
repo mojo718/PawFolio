@@ -21,7 +21,6 @@ const petSchema = new Schema(
     },
     pic: {
       type: String,
-      default: './assets/profilePic/projects/catPFP360x360.jpg'
     },
     bio: {
       type: String,
@@ -41,6 +40,12 @@ const petSchema = new Schema(
     },  
     adoptionDate: {
       type: Date,
+    },
+    likes: {
+      type: String,
+    },
+    dislikes: {
+      type: String
     },
     health: healthSchema,
     owner: {

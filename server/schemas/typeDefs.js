@@ -16,6 +16,8 @@ const typeDefs = `
     breed: String
     age: Int
     adoptionDate: String
+    likes: String
+    dislikes: String
     health: Health
     owner: Owner
     events: [Event]

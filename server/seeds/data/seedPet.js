@@ -17,6 +17,9 @@ const seedPet = async (owners) => {
         "breed": "Siamese",
         "age": 2,
         "owner": owners[0],
+        "bio": "Give Me Orange Give Orange Me Give Eat Orange Me Eat Orange Give Me Eat Orange Give Me You",
+        "likes": "Hunting bugs",
+        "dislikes": "Cucumbers",
         "health": 
           {
             "allergies": 

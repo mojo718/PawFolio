@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PET } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
-import PetProfile from './petProfile'; // Import the PetProfile component
 
 function OwnerProfile({ data, pet }) {
+
   const [addPet] = useMutation(ADD_PET, {refetchQueries: [QUERY_ME]});
   const [showAddPetForm, setShowAddPetForm] = useState(false);
   const [petFormData, setPetFormData] = useState({
@@ -14,7 +14,6 @@ function OwnerProfile({ data, pet }) {
     age: 0,
   });
   const [petList, setPetList] = useState([]);
-  const [selectedPetId, setSelectedPetId] = useState(null); // State for selected pet ID
 
   useEffect(() => {
     if (data) {
@@ -50,6 +49,8 @@ function OwnerProfile({ data, pet }) {
       });
 
       console.log('New pet added:', newPetData.addPet);
+
+      pet.selectPet(data.me.pets.length)
 
       // Update the pet list state with the new pet
       setPetList([...petList, newPetData.addPet]);
@@ -121,7 +122,6 @@ function OwnerProfile({ data, pet }) {
           <button type="submit">Submit</button>
         </form>
       )}
-      {/* {selectedPetId && <PetProfile petId={selectedPetId} />} */}
     </>
   );
 }
