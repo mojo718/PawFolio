@@ -1,35 +1,27 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_PET } from '../utils/queries';
+import PetInfo from './petInfo'
+import PetEvents from './petEvents'
 
-function PetProfile({ petId }) {
-  const { loading, error, data } = useQuery(QUERY_PET, {
-    variables: { petId },
-  });
+function PetProfile({ pet }) {
 
-  const [showInfo, setShowInfo] = useState(false);
-  const [showEvents, setShowEvents] = useState(false);
-  const [showHealthLog, setShowHealthLog] = useState(false);
+  const [compartmentState, selectCompartment] = useState('info')
 
-  const toggleInfo = () => {
-    setShowInfo(!showInfo);
-    setShowEvents(false)
-  }
-  
-  const toggleEvents = () => {
-    setShowEvents(!showEvents);
-    setShowInfo(false)
-  }
+  // const [showInfo, setShowInfo] = useState(false);
+  // const [showEvents, setShowEvents] = useState(false);
+  // const [showHealthLog, setShowHealthLog] = useState(false);
 
   const toggleHealthLog = () => setShowHealthLog(!showHealthLog);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  const pet = data?.pet || [];
+  const RenderElement = () => {
+    if (compartmentState==="info") {
+      return (<PetInfo pet={pet} />)
+    } else if (compartmentState==="events") {
+      return (<PetEvents pet={pet}/>)
+    }
+  }
 
   return (
-    <div className="pet-profile">
+    <div className="pet-profile" style={{ border: "green solid 1px" }}>
       {pet ? (
         <>
           <div className="pet-info">
@@ -37,36 +29,16 @@ function PetProfile({ petId }) {
             <img src={pet.pic} alt={pet.name} />
             <p>{pet.bio}</p>
           </div>
-          <div className="buttons">
-            <button onClick={toggleInfo}>Information</button>
-            <button onClick={toggleEvents}>Events</button>
-            <button onClick={toggleHealthLog}>Health Log</button>
+          <div className="buttons" style={{ border: "black solid 1px" }}>
+            <button onClick={() => selectCompartment('info')}>Information</button>
+            <button onClick={() => selectCompartment('events')}>Events</button>
+            <button>Health Log</button>
           </div>
-          {showInfo && (
-            <div className="info-section">
-              <h3>Information</h3>
-              <p>Species: {pet.species}</p>
-              <p>Breed: {pet.breed}</p>
-              <p>Age: {pet.age}</p>
-              <p>Owner: {pet.owner.username}</p>
-            </div>
-          )}
-          {showEvents && (
-            <div className="events-section">
-              <h3>Events</h3>
-              {pet.events.map((event) => (
-                <div key={event._id}>
-                  <p>{event.title}</p>
-                </div>
-              ))}
-            </div>
-          )}
-          {showHealthLog && (
-            <div className="healthlog-section">
-              <h3>Health Log</h3>
-              {/* Render health log data here */}
-            </div>
-          )}
+
+        <div style={{ border: "purple solid 1px" }}>
+          <RenderElement />
+        </div>
+
         </>
       ) : (
         <p>No pet data found.</p>
@@ -74,5 +46,23 @@ function PetProfile({ petId }) {
     </div>
   );
 }
+
+// )}
+// {showEvents && (
+//   <div className="events-section">
+//     <h3>Events</h3>
+//     {pet.events.map((event) => (
+//       <div key={event._id}>
+//         <p>{event.title}</p>
+//       </div>
+//     ))}
+//   </div>
+// )}
+// {showHealthLog && (
+//   <div className="healthlog-section">
+//     <h3>Health Log</h3>
+//     {/* Render health log data here */}
+//   </div>
+// )}
 
 export default PetProfile;

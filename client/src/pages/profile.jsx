@@ -2,6 +2,7 @@ import React from 'react';
 import OwnerProfile from '../components/ownerProfile';
 import PetProfile from '../components/petProfile';
 // import './Profile.css'; 
+import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -10,6 +11,7 @@ import Auth from '../utils/auth';
 const Profile = () => {
 
   const { loading, data } = useQuery(QUERY_ME)
+  const [petState, selectPet] = useState(0)
 
   if (loading) {
     return <div>Loading...</div>;
@@ -24,11 +26,12 @@ const Profile = () => {
     );
   }
 
+  const pet = data?.me.pets[petState]
+
   return (
     <div className="profile-container">
-      <OwnerProfile data={data}/>
-      {/* <PetProfile pet={pet} /> */}
-      {/* {pet && <PetProfile petId={pet._id} />} */}
+      <OwnerProfile data={data} pet={{petState, selectPet}}/>
+      <PetProfile pet={pet} />
     </div>
   );
 };

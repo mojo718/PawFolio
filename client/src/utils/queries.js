@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ME = gql`
-  query me {
+  query Query {
     me {
+      _id
       username
       email
       petCount
@@ -12,6 +13,17 @@ export const QUERY_ME = gql`
         species
         breed
         age
+        bio
+        pic
+        events {
+          _id
+          title
+          type
+          location
+          startTime
+          status
+          notes
+        }
       }
     }
   }

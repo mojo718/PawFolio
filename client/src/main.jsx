@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'; // Import Semantic UI CSS
 import './index.css'
 import Events from './components/events.jsx';
-
 import App from './App.jsx'
 import Home from './pages/home.jsx'
 import Login from './pages/login.jsx'
