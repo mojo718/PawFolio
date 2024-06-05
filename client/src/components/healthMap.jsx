@@ -36,15 +36,21 @@ export default function HealthMap({ pet, pin }) {
         {healthMap && (
           <div className="image-container" style={{ position: "relative" }}>
             <h3 style={{ position:"absolute", zIndex:"256", left:'3%' }}>{pet.name}</h3>
-            {pet.health.diagnosis.map((item, index) => (
-              (item.pinPosition ? (
-                <div key={item._id}>
-                  <img src={redDot} style={{ maxWidth: "2%", position: "absolute", zIndex: `${index+1}`, left:`${item.pinPosition.split('x')[0]}%`, top:`${item.pinPosition.split('x')[1]}%`}} onClick={getCoordinates}/>
-                </div>
-              ) : (
-                null
-              ))
-            ))}
+            {pet.health ? (
+              <>
+                {pet.health.diagnosis.map((item, index) => (
+                  (item.pinPosition ? (
+                    <div key={item._id}>
+                      <img src={redDot} style={{ maxWidth: "2%", position: "absolute", zIndex: `${index+1}`, left:`${item.pinPosition.split('x')[0]}%`, top:`${item.pinPosition.split('x')[1]}%`}} onClick={getCoordinates}/>
+                    </div>
+                  ) : (
+                    null
+                  ))
+                ))}
+              </>
+            ) : (
+              null
+            )}
             <img src={healthMap} onClick={getCoordinates} style={{ maxWidth: "100%", position: "relative", zIndex: "0" }} alt="Logo" />
           </div>
         )}

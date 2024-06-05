@@ -4,7 +4,7 @@ import { ADD_PET } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import PetProfile from './petProfile'; // Import the PetProfile component
 
-function OwnerProfile({ data }) {
+function OwnerProfile({ data, pet }) {
   const [addPet] = useMutation(ADD_PET, {refetchQueries: [QUERY_ME]});
   const [showAddPetForm, setShowAddPetForm] = useState(false);
   const [petFormData, setPetFormData] = useState({
@@ -67,27 +67,27 @@ function OwnerProfile({ data }) {
     setShowAddPetForm(false);
   };
 
-  const handleAddFriend = () => {
-    // Handle logic for adding a friend
-  };
-
-  const handlePetClick = (petId) => {
-    setSelectedPetId(petId);
+  const handlePetSelect = (index) => {
+    pet.selectPet(index)
   };
 
   return (
-    <div>
-      <h1>Welcome, {me.username}!</h1>
-      <p>Email: {me.email}</p>
-      <p>Number of pets: {me.petCount}</p>
-      <p>Pet List:</p>
-      {petList.map((pet) => (
-        <div key={pet._id} onClick={() => handlePetClick(pet._id)}>
-          <p>{pet.name}</p>
+    <>
+
+      <div style={{ border: "black solid 1px" }}>
+        <div style={{ border: "blue solid 1px"}}>
+          <h1>Welcome, {me.username}!</h1>
+          <p>Email: {me.email}</p>
+          <p>Pets: {me.petCount}</p>
         </div>
-      ))}
-      <button onClick={handleAddPet}>Add Pet</button>
-      <button onClick={handleAddFriend}>Add Friend</button>
+        <div style={{ border: "red solid 1px"}}>
+          {petList.map((pet, index) => (
+            <button key={pet._id} style={{backgroundColor: "blue"}} onClick={() => handlePetSelect(index)}>{pet.name}</button>
+          ))}
+          <button onClick={handleAddPet}>Add Pet</button>
+        </div>
+      </div>
+
       {showAddPetForm && (
         <form onSubmit={handleSubmit}>
           <input
@@ -121,8 +121,8 @@ function OwnerProfile({ data }) {
           <button type="submit">Submit</button>
         </form>
       )}
-      {selectedPetId && <PetProfile petId={selectedPetId} />}
-    </div>
+      {/* {selectedPetId && <PetProfile petId={selectedPetId} />} */}
+    </>
   );
 }
 

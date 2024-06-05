@@ -55,7 +55,7 @@ const typeDefs = `
 
   type Event {
     _id: ID!
-    title: String!
+    title: String
     startTime: String
     location: String
     pet: [Pet]

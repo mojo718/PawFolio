@@ -7,6 +7,8 @@ import { QUERY_PET_HEALTH } from '../utils/queries';
 
 export default function HealthInfo({ pet, pin }) {
 
+  console.log("test", pet.health)
+
   // ---------------Code for profile edit--------------- //
 
   const [formEdit, toggleEdit] = useState(false);
@@ -158,22 +160,29 @@ export default function HealthInfo({ pet, pin }) {
             <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", margin:'5px', padding: '10px' }} onClick={handleDiagToggle}>Add an Issue</button>
           </>
         )}
-        {pet.health.diagnosis.map((item) => (
-          <div key={item._id} style={{ border: '1px solid #EBE9E1', margin:'5px', padding: '10px' }}>
-            <p>Issue: {item.issue}</p>
-            <p>Location: {item.location}</p>
-            {item.pinPosition ? (
-              <>
-                <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemovePin}>Remove Pin</button>
-              </>
-            ) : (
-              <>
-                <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1" }} data-id={item._id} onClick={handleReadyPin}>{pin.pinState ? 'Setting Pin. Click to Cancel' : 'Add Pin'}</button>
-              </>
-            )}
-            <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemoveDiag}>Remove This Issue</button>
-          </div>
-        ))}
+        {pet.health ? (
+          <>
+            {pet.health.diagnosis.map((item) => (
+              <div key={item._id} style={{ border: '1px solid #EBE9E1', margin:'5px', padding: '10px' }}>
+                <p>Issue: {item.issue}</p>
+                <p>Location: {item.location}</p>
+                {item.pinPosition ? (
+                  <>
+                    <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemovePin}>Remove Pin</button>
+                  </>
+                ) : (
+                  <>
+                    <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1" }} data-id={item._id} onClick={handleReadyPin}>{pin.pinState ? 'Setting Pin. Click to Cancel' : 'Add Pin'}</button>
+                  </>
+                )}
+                <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemoveDiag}>Remove This Issue</button>
+              </div>
+            ))}
+          </>
+        ) : (
+            null
+        )}
+
       </div>
     </div>
   )

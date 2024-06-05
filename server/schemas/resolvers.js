@@ -12,7 +12,11 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await Owner.findOne({ _id: context.user._id }).populate('pets');
+        const userData = await Owner.findOne({ _id: context.user._id }).populate('pets').populate({
+          path: 'pets',
+          populate: 'events'
+        });
+
         return userData;
       }
       throw new AuthenticationError('Not logged in');
