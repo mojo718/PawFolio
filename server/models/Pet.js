@@ -25,7 +25,7 @@ const petSchema = new Schema(
     },
     bio: {
       type: String,
-      // Does this need a character limit?
+      default: ''
     },
     species: {
       type: String,
