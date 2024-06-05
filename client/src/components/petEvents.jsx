@@ -1,6 +1,6 @@
 import './petEvents.css'
 
-
+// TODO: Get Date to show up as readable format
 
 function PetEvents({ pet }) {
 

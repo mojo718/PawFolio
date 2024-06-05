@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import PetInfo from './petInfo'
 import PetEvents from './petEvents'
+import { useNavigate } from 'react-router-dom';
 
 function PetProfile({ pet }) {
+  const navigate = useNavigate();
+
+  console.log(pet._id)
 
   const [compartmentState, selectCompartment] = useState('info')
 
@@ -10,7 +14,7 @@ function PetProfile({ pet }) {
   // const [showEvents, setShowEvents] = useState(false);
   // const [showHealthLog, setShowHealthLog] = useState(false);
 
-  const toggleHealthLog = () => setShowHealthLog(!showHealthLog);
+  // const toggleHealthLog = () => setShowHealthLog(!showHealthLog);
 
   const RenderElement = () => {
     if (compartmentState==="info") {
@@ -32,7 +36,7 @@ function PetProfile({ pet }) {
           <div className="buttons" style={{ border: "black solid 1px" }}>
             <button onClick={() => selectCompartment('info')}>Information</button>
             <button onClick={() => selectCompartment('events')}>Events</button>
-            <button>Health Log</button>
+            <button onClick={() => navigate(`/health/${pet._id}`)}>Health Log</button>
           </div>
 
         <div style={{ border: "purple solid 1px" }}>
@@ -43,6 +47,7 @@ function PetProfile({ pet }) {
       ) : (
         <p>No pet data found.</p>
       )}
+      {/* <button>Remove Pet From your Account</button> */}
     </div>
   );
 }
