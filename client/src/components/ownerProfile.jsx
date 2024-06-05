@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { useMutation } from '@apollo/client';
 import { ADD_PET } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries';
 import PetProfile from './petProfile'; // Import the PetProfile component
 
-function OwnerProfile() {
-  const { loading, error, data, refetch } = useQuery(QUERY_ME);
-  const [addPet] = useMutation(ADD_PET);
+function OwnerProfile({ data }) {
+  const [addPet] = useMutation(ADD_PET, {refetchQueries: [QUERY_ME]});
   const [showAddPetForm, setShowAddPetForm] = useState(false);
   const [petFormData, setPetFormData] = useState({
     name: '',
@@ -23,9 +22,6 @@ function OwnerProfile() {
       setPetList(data.me.pets);
     }
   }, [data]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   const { me } = data;
 

@@ -25,13 +25,10 @@ export const CREATE_OWNER = gql`
 `;
 
 export const ADD_PET = gql`
-  mutation addPet($name: String!, $species: String!, $breed: String!, $age: Int!) {
-    addPet(name: $name, species: $species, breed: $breed, age: $age) {
+  mutation Mutation($species: String!, $name: String, $breed: String, $age: Int) {
+    addPet(species: $species, name: $name, breed: $breed, age: $age) {
       _id
-      name
-      species
-      breed
-      age
+      username
     }
   }
 `;
@@ -75,6 +72,16 @@ export const REMOVE_FRIEND = gql`
       friends {
         _id
       }
+    }
+  }
+`;
+
+export const UPDATE_BIO = gql`
+  mutation Mutation($petId: String!, $bio: String) {
+    updateBio(petId: $petId, bio: $bio) {
+      _id
+      name
+      bio
     }
   }
 `;
@@ -176,4 +183,4 @@ export const REMOVE_EVENT = gql`
       }
     }
   }
-`
+`;
