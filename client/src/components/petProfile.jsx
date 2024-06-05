@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PetInfo from './petInfo'
 import PetEvents from './petEvents'
-import { useNavigate } from 'react-router-dom';
+import defaultPFP from '../assets/profilePic/lanaPFP360x360.jpg'
 
 function PetProfile({ pet }) {
   const navigate = useNavigate();
 
-  console.log(pet._id)
-
   const [compartmentState, selectCompartment] = useState('info')
-
-  // const [showInfo, setShowInfo] = useState(false);
-  // const [showEvents, setShowEvents] = useState(false);
-  // const [showHealthLog, setShowHealthLog] = useState(false);
-
-  // const toggleHealthLog = () => setShowHealthLog(!showHealthLog);
 
   const RenderElement = () => {
     if (compartmentState==="info") {
@@ -30,8 +23,9 @@ function PetProfile({ pet }) {
         <>
           <div className="pet-info">
             <h2>{pet.name}</h2>
-            <img src={pet.pic} alt={pet.name} />
-            <p>{pet.bio}</p>
+            <img src={pet.pic ? pet.pic : defaultPFP} alt={pet.name}/>
+            {/* <button data-id={pet._id} onClick={()=>console.log("REPLACE ME")}>Update Picture</button> */}
+            <p onClick={()=>console.log("ADD FUNCTION TO UPDATE")}>Bio: {pet.bio}</p>
           </div>
           <div className="buttons" style={{ border: "black solid 1px" }}>
             <button onClick={() => selectCompartment('info')}>Information</button>
@@ -47,27 +41,8 @@ function PetProfile({ pet }) {
       ) : (
         <p>No pet data found.</p>
       )}
-      {/* <button>Remove Pet From your Account</button> */}
     </div>
   );
 }
-
-// )}
-// {showEvents && (
-//   <div className="events-section">
-//     <h3>Events</h3>
-//     {pet.events.map((event) => (
-//       <div key={event._id}>
-//         <p>{event.title}</p>
-//       </div>
-//     ))}
-//   </div>
-// )}
-// {showHealthLog && (
-//   <div className="healthlog-section">
-//     <h3>Health Log</h3>
-//     {/* Render health log data here */}
-//   </div>
-// )}
 
 export default PetProfile;

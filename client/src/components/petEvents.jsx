@@ -4,11 +4,10 @@ import './petEvents.css'
 
 function PetEvents({ pet }) {
 
-  console.log(pet)
-
   return (
     <div className="events-section">
       <h2>Events for {pet.name}</h2>
+      <button data-id={pet._id} onClick={()=>console.log("REPLACE ME")}>Add an Event</button>
       {pet.events.length > 0 ? (
         <ul>
           {pet.events.map((event) => (
