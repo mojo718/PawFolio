@@ -4,6 +4,7 @@ import redDot from '../assets/redDot.png';
 import { useMutation } from '@apollo/client';
 import { SET_PIN } from '../utils/mutations';
 import { QUERY_PET_HEALTH } from '../utils/queries';
+import './healthMap.css';
 
 export default function HealthMap({ pet, pin }) {
 
@@ -31,7 +32,7 @@ export default function HealthMap({ pet, pin }) {
 
   return (
     <>
-      <div style={{ border: '1px solid blue' }}>PLACEHOLDER FROM MAP
+      <div className='main' style={{ }}>PLACEHOLDER FROM MAP
         {healthMap && (
           <div className="image-container" style={{ position: "relative" }}>
             <h3 style={{ position:"absolute", zIndex:"256", left:'3%' }}>{pet.name}</h3>
@@ -51,3 +52,5 @@ export default function HealthMap({ pet, pin }) {
     </>
   )
 }
+
+// export default HealthMap;

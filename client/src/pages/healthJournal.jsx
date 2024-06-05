@@ -48,7 +48,7 @@ const HealthJournal = () => {
   }
 
   return (
-    <div>
+    <div style={{margin:'5px', padding: '2em'}}>
       <h1>PLACEHOLDER FROM PARENT</h1>
       <HealthMap pet={data.pet} pin={{pinState, readyPin}} />
       <HealthInfo pet={data.pet} pin={{pinState, readyPin}}/>
