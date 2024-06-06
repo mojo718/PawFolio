@@ -7,7 +7,7 @@ import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
-import { convertToUnix } from '../utils/helpers'
+import { convertToUnix  } from '../utils/helpers'
 
 function PetEvents({ pet }) {
   const [addEventState, toggleAddEvent] = useState(false)
@@ -42,10 +42,7 @@ function PetEvents({ pet }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(formState)
-    console.log(typeof formState.startTime.toString())
-
+    console.log(formState.startTime)
     try {
       await addEvent({
         variables: { ...formState, startTime: formState.startTime.toString(), petId: pet._id}
@@ -67,8 +64,11 @@ function PetEvents({ pet }) {
     }
   }
 
-  // ---------------Code for datepicker--------------- //
+  // For loading events in order (Top of container is soonest)
+  let eventsArray = [...pet.events]
+  eventsArray.sort((a, b) => parseFloat(a.startTime) - parseFloat(b.startTime))
 
+  // Code necessary for datepicker
   const [startDate, setStartDate] = useState(new Date());
 
   return (
@@ -78,7 +78,7 @@ function PetEvents({ pet }) {
         <button className="ui icon button orange" onClick={()=>toggleAddEvent(true)}><i aria-hidden="true" className="plus icon"></i></button>
         {pet.events.length > 0 ? (
           <ul>
-            {pet.events.map((event) => (
+            {eventsArray.map((event) => (
               <li key={event._id} className="event-item">
                 <h3>{event.title}</h3>
                 {event.type ? (<p>{event.type}</p>) : null}
@@ -122,10 +122,11 @@ function PetEvents({ pet }) {
             <DatePicker
               selected={startDate}
               onChange={(date) => {
+                console.log("Change", date)
                 setStartDate(date);
                 setFormState({
                   ...formState,
-                  startTime: convertToUnix(startDate)
+                  startTime: convertToUnix(date)
                 });
               }}
               timeInputLabel="Time:"
