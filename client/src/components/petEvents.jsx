@@ -105,10 +105,10 @@ function PetEvents({ pet }) {
         open={addEventState}
         size='small'
       >
-        <Header icon>
+        {/* <Header icon>
           <Icon name='calendar plus outline' />
           Adding an Event for {pet.name}
-        </Header>
+        </Header> */}
         <ModalContent>
           <form>
             <input type="text" placeholder="Title" name="title" value={formState.title} onChange={handleChange}></input>
