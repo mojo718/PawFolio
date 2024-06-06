@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_PET } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import './ownerProfile.css'
+import Header from "../components/header.jsx";
 
 function OwnerProfile({ data, pet }) {
 
@@ -120,6 +121,7 @@ function OwnerProfile({ data, pet }) {
             </form>
           )}
         </div>
+        <Header />
       </div>
     </>
   );  

@@ -3,10 +3,10 @@
 }
 
 .ui.grid {
-    padding-top: 10%;
+    padding-top: 3em;
 }
 
-.header {
+.head {
     font-size: 3em;
     padding: 10px 0px 0px 0px;
     text-align: left;
