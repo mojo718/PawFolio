@@ -26,7 +26,7 @@ function OwnerProfile({ data, pet }) {
   const { me } = data;
 
   const handleAddPet = () => {
-    setShowAddPetForm(true);
+    setShowAddPetForm(!showAddPetForm);
   };
 
   const handleInputChange = (e) => {

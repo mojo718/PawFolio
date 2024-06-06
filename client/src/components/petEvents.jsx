@@ -45,7 +45,7 @@ function PetEvents({ pet }) {
     console.log(formState.startTime)
     try {
       await addEvent({
-        variables: { ...formState, startTime: formState.startTime.toString(), petId: pet._id}
+        variables: { ...formState, startTime: formState.startTime, petId: pet._id}
       })
       toggleAddEvent(false)
     } catch (err) {
@@ -87,6 +87,8 @@ function PetEvents({ pet }) {
                 {event.type ? (<p>{event.type}</p>) : null}
                 <p>Location: {event.location}</p>
                 <p><strong>Date:</strong> {moment((parseInt(event.startTime))).format('MMMM D YYYY, h:mm:ss a')}</p>
+                <p>Status: {event.status}</p>
+                {/* <p>Notes: {event.notes}</p> */}
                 <button className="ui icon red button" data-id={event._id} onClick={handleRemoveEvent}><i aria-hidden="true" className="close icon" data-id={event._id}></i></button>
               </li>
             ))}
@@ -127,7 +129,7 @@ function PetEvents({ pet }) {
                 setStartDate(date);
                 setFormState({
                   ...formState,
-                  startTime: convertToUnix(date)
+                  startTime: convertToUnix(date).toString()
                 });
               }}
               timeInputLabel="Time:"
