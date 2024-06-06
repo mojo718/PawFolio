@@ -57,12 +57,12 @@ const typeDefs = `
 
   type Event {
     _id: ID!
-    title: String
+    title: String!
+    type: String
     startTime: String
     location: String
     pet: [Pet]
     owner: [Owner]
-    type: String
     status: String
     notes: String
     createdAt: String
@@ -87,7 +87,7 @@ const typeDefs = `
     addFriend(petId: String!, friendId: String!): Pet
     removeFriend(petId: String!, friendId: String!): Pet
     updateBio(petId: String!, bio: String): Pet
-    addEvent(petId: ID!, title: String!, startTime: String, location: String, status: String, notes: String): Pet
+    addEvent(petId: ID!, title: String!, startTime: String, location: String, type: String): Pet
     removeEvent(petId: ID!, eventId: ID!): Pet
     updatePet(petId: String!, name: String, pic: String, bio: String, species: String, breed: String, age: Int, adoptionDate: String): Pet
     addAllergy(petId: String!, name: String!): Pet

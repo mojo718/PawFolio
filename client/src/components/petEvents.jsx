@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations'
-
-
-// TODO: Get Date to show up as readable format
+import moment from 'moment'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+import { convertToUnix } from '../utils/helpers'
 
 function PetEvents({ pet }) {
   const [addEventState, toggleAddEvent] = useState(false)
@@ -42,9 +43,12 @@ function PetEvents({ pet }) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    console.log(formState)
+    console.log(typeof formState.startTime.toString())
+
     try {
       await addEvent({
-        variables: { ...formState, petId: pet._id}
+        variables: { ...formState, startTime: formState.startTime.toString(), petId: pet._id}
       })
       toggleAddEvent(false)
     } catch (err) {
@@ -63,11 +67,15 @@ function PetEvents({ pet }) {
     }
   }
 
+  // ---------------Code for datepicker--------------- //
+
+  const [startDate, setStartDate] = useState(new Date());
+
   return (
     <>
       <div className="events-section">
         <h2>Events for {pet.name}</h2>
-        <button className="ui icon button" onClick={()=>toggleAddEvent(true)}><i aria-hidden="true" className="plus icon"></i></button>
+        <button className="ui icon button orange" onClick={()=>toggleAddEvent(true)}><i aria-hidden="true" className="plus icon"></i></button>
         {pet.events.length > 0 ? (
           <ul>
             {pet.events.map((event) => (
@@ -75,7 +83,7 @@ function PetEvents({ pet }) {
                 <h3>{event.title}</h3>
                 {event.type ? (<p>{event.type}</p>) : null}
                 <p>Location: {event.location}</p>
-                <p><strong>Date:</strong> {new Date(event.startTime).toLocaleDateString()}</p>
+                <p><strong>Date:</strong> {moment((parseInt(event.startTime))).format('MMMM D YYYY, h:mm:ss a')}</p>
                 <button className="ui icon red button" data-id={event._id} onClick={handleRemoveEvent}><i aria-hidden="true" className="close icon" data-id={event._id}></i></button>
               </li>
             ))}
@@ -85,6 +93,7 @@ function PetEvents({ pet }) {
         )}
       </div>
 
+      {/* Uses semantic reacts */}
       <Modal
         basic
         onClose={() => toggleAddEvent(false)}
@@ -99,9 +108,30 @@ function PetEvents({ pet }) {
         <ModalContent>
           <form>
             <input type="text" placeholder="Title" name="title" value={formState.title} onChange={handleChange}></input>
-            <input type="text" placeholder="Type" name="type" value={formState.type} onChange={handleChange}></input>
+            <select name='type' onChange={handleChange}>
+              <option value=''>Type</option>
+              <option value="Vet Visit">Vet Visit</option>
+              <option value="Grooming">Grooming</option>
+              <option value="Walking">Walking</option>
+              <option value="Play Date">Play Date</option>
+              <option value="Feeding">Feeding</option>
+              <option value="Other">Other</option>
+            </select>
+            {/* <input type="text" placeholder="Type" name="type" value={formState.type} onChange={handleChange}></input> */}
             <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
-            <input type="text" placeholder="Time" name="startTime" value={formState.startTime} onChange={handleChange}></input>   
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => {
+                setStartDate(date);
+                setFormState({
+                  ...formState,
+                  startTime: convertToUnix(startDate)
+                });
+              }}
+              timeInputLabel="Time:"
+              dateFormat="MM/dd/yyyy h:mm aa"
+              showTimeInput
+            />
           </form>
         </ModalContent>
         <ModalActions>
