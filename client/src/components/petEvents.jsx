@@ -7,7 +7,7 @@ import { ADD_EVENT, REMOVE_EVENT } from '../utils/mutations'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
-import { convertToUnix  } from '../utils/helpers'
+import { convertToUnix } from '../utils/helpers'
 
 function PetEvents({ pet }) {
   const [addEventState, toggleAddEvent] = useState(false)
@@ -117,7 +117,6 @@ function PetEvents({ pet }) {
               <option value="Feeding">Feeding</option>
               <option value="Other">Other</option>
             </select>
-            {/* <input type="text" placeholder="Type" name="type" value={formState.type} onChange={handleChange}></input> */}
             <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
             <DatePicker
               selected={startDate}
