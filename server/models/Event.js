@@ -6,6 +6,11 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      enum: ['Vet Visit', 'Grooming', 'Walking', 'Play Date', 'Feeding', 'Other'],
+      default: 'Other'
+    },
     startTime: {
       type: Date
     },
@@ -19,11 +24,6 @@ const eventSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'Owner',
-    },
-    type: {
-      type: String,
-      enum: ['Vet Visit', 'Grooming', 'Walking', 'Play Date', 'Feeding'],
-      
     },
     status: {
       type: String,

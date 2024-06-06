@@ -150,18 +150,13 @@ export const REMOVE_PIN = gql`
 `;
 
 export const ADD_EVENT = gql`
-  mutation Mutation($petId: ID!, $title: String!, $location: String, $status: String, $notes: String) {
-    addEvent(petId: $petId, title: $title, location: $location, status: $status, notes: $notes) {
+  mutation Mutation($petId: ID!, $title: String!, $startTime: String, $location: String, $type: String) {
+    addEvent(petId: $petId, title: $title, startTime: $startTime, location: $location, type: $type) {
       _id
       name
       events {
         _id
         title
-        type
-        location
-        startTime
-        status
-        notes
       }
     }
   }
