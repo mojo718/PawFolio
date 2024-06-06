@@ -5,6 +5,7 @@ import HealthInfo from '../components/healthInfo';
 import HealthMap from '../components/healthMap'
 import { QUERY_PET_HEALTH } from '../utils/queries';
 import Auth from '../utils/auth'
+import Header from "../components/header.jsx";
 
 const HealthJournal = () => {
   const navigate = useNavigate();
@@ -49,9 +50,10 @@ const HealthJournal = () => {
 
   return (
     <div style={{margin:'5px', padding: '2em'}}>
-      <h1>PLACEHOLDER FROM PARENT</h1>
+      <h1>Health Log</h1>
       <HealthMap pet={data.pet} pin={{pinState, readyPin}} />
       <HealthInfo pet={data.pet} pin={{pinState, readyPin}}/>
+      <Header />
     </div>
   )
 }

@@ -1,6 +1,8 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import tempLogo from '../assets/tempLogo.jpg'
 import Auth from '../utils/auth'
+import Footer from "../components/footer.jsx";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -31,6 +33,7 @@ const Home = () => {
             <div className="logo">
                 <img src={tempLogo} style={{border:"1px solid black"}} alt="Logo" />
             </div>
+            <Footer />
         </div>
     );
 };

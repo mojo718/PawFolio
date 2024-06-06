@@ -5,6 +5,7 @@ import { LOGIN_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 import "./login.css";
+import Footer from "../components/footer.jsx";
 
 
 const Login = () => {
@@ -51,7 +52,7 @@ const Login = () => {
           {/* <div className="ui two column very relaxed grid">
           <div className="column"> */}
           {/* <div className="content"> */}
-          <h4 className="header">Welcome Back!</h4>
+          <h4 className="head">Welcome Back!</h4>
           <div className="description">
             <p className="text">We are glad to see you again! Please log in to continue.</p>
           </div>
@@ -60,7 +61,7 @@ const Login = () => {
         <div className="right floated seven wide column">
           {/* <div className="column">
           <div className="content"> */}
-          <h4 className="header">Login</h4>
+          <h4 className="head">Login</h4>
           <div className="description">
             {data ? (
               <p>
@@ -114,61 +115,11 @@ const Login = () => {
         </div>
       </div>
       {/* <div className="ui vertical divider"></div> */}
+      <Footer />
     </main>
   );
 };
 
 export default Login;
 
-//   return (
-//     <main className="flex-row justify-center mb-4">
-//       <div className="col-12 col-lg-10">
-//         <div className="card">
-//           <h4 className="card-header bg-dark text-light p-2">Login</h4>
-//           <div className="card-body">
-//             {data ? (
-//               <p>
-//                 Success! You may now head{' '}
-//                 <Link to="/">back to the homepage.</Link>
-//               </p>
-//             ) : (
-//               <form onSubmit={handleFormSubmit}>
-//                 <input
-//                   className="form-input"
-//                   placeholder="Your email"
-//                   name="email"
-//                   type="email"
-//                   value={formState.email}
-//                   onChange={handleChange}
-//                 />
-//                 <input
-//                   className="form-input"
-//                   placeholder="******"
-//                   name="password"
-//                   type="password"
-//                   value={formState.password}
-//                   onChange={handleChange}
-//                 />
-//                 <button
-//                   className="btn btn-block btn-primary"
-//                   style={{ cursor: 'pointer' }}
-//                   type="submit"
-//                 >
-//                   Submit
-//                 </button>
-//               </form>
-//             )}
 
-//             {error && (
-//               <div className="my-3 p-3 bg-danger text-white">
-//                 {error.message}
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </main>
-//   );
-// };
-
-// export default Login;

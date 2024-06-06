@@ -32,10 +32,11 @@ export default function HealthMap({ pet, pin }) {
 
   return (
     <>
-      <div className='main' style={{ }}>PLACEHOLDER FROM MAP
+      <div className='main' style={{ }}>
+        <h2>{pet.name}</h2>
         {healthMap && (
           <div className="image-container" style={{ position: "relative" }}>
-            <h3 style={{ position:"absolute", zIndex:"256", left:'3%' }}>{pet.name}</h3>
+            {/* <h3 style={{ position:"absolute", zIndex:"256", left:'3%' }}>{pet.name}</h3> */}
             {pet.health ? (
               <>
                 {pet.health.diagnosis.map((item, index) => (
