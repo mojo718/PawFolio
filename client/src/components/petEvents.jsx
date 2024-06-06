@@ -28,7 +28,10 @@ function PetEvents({ pet }) {
     <>
       <div className="events-section">
         <h2>Events for {pet.name}</h2>
-        <button class="ui icon button" onClick={()=>toggleAddEvent(true)}><i aria-hidden="true" class="plus icon"></i></button>
+        <button className="add-event-button" onClick={() => toggleAddEvent(true)}>
+          Add Event
+          <i className="plus icon" aria-hidden="true"></i>
+        </button>
         {pet.events.length > 0 ? (
           <ul>
             {pet.events.map((event) => (
@@ -42,8 +45,8 @@ function PetEvents({ pet }) {
         ) : (
           <p>No events found for this pet.</p>
         )}
-      </div>
-
+      </div>  
+  
       <Modal
         basic
         onClose={() => toggleAddEvent(false)}

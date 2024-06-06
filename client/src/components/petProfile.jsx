@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './petProfile.css'
 import PetInfo from './petInfo'
 import PetEvents from './petEvents'
 import defaultPFP from '../assets/profilePic/lanaPFP360x360.jpg'
+
 
 function PetProfile({ pet }) {
   const navigate = useNavigate();
@@ -18,31 +20,30 @@ function PetProfile({ pet }) {
   }
 
   return (
-    <div className="pet-profile" style={{ border: "green solid 1px" }}>
+    <div className="pet-profile">
       {pet ? (
         <>
           <div className="pet-info">
-            <h2>{pet.name}</h2>
-            <img src={pet.pic ? pet.pic : defaultPFP} alt={pet.name}/>
-            {/* <button data-id={pet._id} onClick={()=>console.log("REPLACE ME")}>Update Picture</button> */}
-            <p onClick={()=>console.log("ADD FUNCTION TO UPDATE")}>Bio: {pet.bio}</p>
+            <img className="pet-pic" src={pet.pic ? pet.pic : defaultPFP} alt={pet.name} />
+            <div className="pet-details">
+              <h2>{pet.name}</h2>
+              <p className="pet-bio" onClick={() => console.log("ADD FUNCTION TO UPDATE")}>Bio: {pet.bio}</p>
+            </div>
           </div>
-          <div className="buttons" style={{ border: "black solid 1px" }}>
+          <div className="nav-buttons">
             <button onClick={() => selectCompartment('info')}>Information</button>
             <button onClick={() => selectCompartment('events')}>Events</button>
             <button onClick={() => navigate(`/health/${pet._id}`)}>Health Log</button>
           </div>
-
-        <div style={{ border: "purple solid 1px" }}>
-          <RenderElement />
-        </div>
-
+          <div>
+            <RenderElement />
+          </div>
         </>
       ) : (
         <p>No pet data found.</p>
       )}
     </div>
-  );
+  );  
 }
 
 export default PetProfile;
