@@ -83,7 +83,7 @@ function PetEvents({ pet }) {
           <ul>
             {eventsArray.map((event) => (
               <li key={event._id} className="event-item">
-                <h3>{event.title}</h3>
+                <p>{event.title}</p>
                 {event.type ? (<p>{event.type}</p>) : null}
                 <p>Location: {event.location}</p>
                 <p><strong>Date:</strong> {moment((parseInt(event.startTime))).format('MMMM D YYYY, h:mm:ss a')}</p>

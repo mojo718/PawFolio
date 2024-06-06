@@ -27,19 +27,18 @@ function PetProfile({ pet }) {
   const [updatePet] = useMutation(UPDATE_PET, {refetchQueries: [QUERY_ME]})
 
   const handleSubmit = async (event) => {
-    console.log(formState)
     try {
       await updatePet({
         variables: { ...formState, petId: pet._id }
       })
-      
+      setChecked(false)
     } catch (err) {
       console.error("Error: Cannot make changes", err)
     }
   }
 
   const [checked, setChecked] = useState(false)
-  
+
   useEffect(() => {
     if (checked===true) {
       setFormState({ ...formState, pic: ''})
@@ -62,7 +61,6 @@ function PetProfile({ pet }) {
 
   return (
     <div className="pet-profile">
-      <button onClick={()=>console.log(formState)}></button>
       {pet ? (
         <>
           <div className="pet-info">
@@ -71,6 +69,7 @@ function PetProfile({ pet }) {
               content={
                 <>
                   URL: <Input 
+                    fluid
                     onChange={(text) => setFormState({ ...formState, pic: text.nativeEvent.target.value })} 
                     placeholder={pet.pic || 'Image URL' }
                     />
@@ -91,7 +90,25 @@ function PetProfile({ pet }) {
             />
             <div className="pet-details">
               <h2>{pet.name}</h2>
-              <p className="pet-bio" onClick={() => console.log("ADD FUNCTION TO UPDATE")}>Bio: {pet.bio}</p>
+              <Popup
+              header='Update Bio'
+              content={
+                <>
+                  <Input 
+                    fluid
+                    onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
+                    placeholder={pet.bio || `I gots stuff to say` }
+                    />
+                  <Button icon color='green' onClick={handleSubmit}>
+                    <Icon name='check' />
+                    Confirm Change
+                  </Button>
+                </>
+              }
+              on='click'
+              pinned
+              trigger={<p className="pet-bio">Bio: {pet.bio}</p>}
+            />
             </div>
           </div>
           <div className="nav-buttons">

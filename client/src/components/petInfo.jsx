@@ -7,8 +7,6 @@ import './petInfo.css'
 
 function PetInfo({ pet }) {
 
-  console.log("petinfo", pet)
-
   const [removePet] = useMutation(REMOVE_PET, {refetchQueries: [QUERY_ME]})
 
   const handleRemovePet = async (event) => {

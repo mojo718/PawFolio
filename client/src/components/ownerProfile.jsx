@@ -18,7 +18,7 @@ function OwnerProfile({ data, pet }) {
 
   useEffect(() => {
     if (data) {
-      console.log('Fetched data:', data.me.pets);
+      // console.log('Fetched data:', data.me.pets);
       setPetList(data.me.pets);
     }
   }, [data]);
