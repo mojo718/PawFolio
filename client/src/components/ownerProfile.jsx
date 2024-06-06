@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PET } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
+import './ownerProfile.css'
 
 function OwnerProfile({ data, pet }) {
 

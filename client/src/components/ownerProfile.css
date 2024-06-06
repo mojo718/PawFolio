@@ -1,0 +1,79 @@
+.owner-info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(145, 196, 240, 0.478);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+.pet-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 10px; 
+    margin-top: 10px;
+    width: 100%;
+}
+
+.pet-button {
+    width: 100%;
+    background-color: rgb(83, 163, 233);
+    margin-bottom: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.pet-button:hover {
+    background-color: rgb(12, 121, 216);
+}
+
+.add-pet-button {
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #E43D12;
+}
+
+.add-pet-button:hover {
+    background-color: #d13b00; 
+  }
+  
+
+form {
+    margin-top: 10px; 
+    padding: 20px;
+    background-color: rgba(145, 196, 240, 0.478);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    width: 100%;
+    align-items: center;
+}
+
+form input {
+    margin-bottom: 5px;
+    padding: 10px;
+    border: none;
+    background-color:#EBE9E1;
+    color: black;
+    border-radius: 5px;
+    font-size: 14px;
+    width: calc(100% - 22px); 
+}
+
+form button {
+    padding: 10px;
+    background-color: rgb(57, 57, 253);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: rgb(45, 45, 202);
+}
