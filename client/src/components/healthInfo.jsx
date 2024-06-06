@@ -122,7 +122,7 @@ export default function HealthInfo({ pet, pin }) {
   }
 
   return (
-    <div style={{ border: '1px solid black' }}>
+    <div style={{ backgroundColor: "#80B6E633", margin:'10px', padding: '10px' }}>
       {formEdit ? (
         <>
           <form onSubmit={handleFormSubmit}>
@@ -130,9 +130,9 @@ export default function HealthInfo({ pet, pin }) {
             Species: <input type="text" placeholder={formState.species} name="species" value={formState.species} onChange={handleChange}/>
             Breed: <input type="text" placeholder={formState.breed} name="breed" value={formState.breed} onChange={handleChange}/>
             Age: <input type="text" placeholder={formState.age} name="age" value={formState.age} onChange={handleChange}/>
-            <button type="submit" style={{ backgroundColor: "grey" }}>Update Pet</button>
+            <button type="submit" style={{ backgroundColor: "#53A3E9" }}>Update Pet</button>
           </form>
-          <button style={{ backgroundColor: "#E43D12" }} onClick={handleFormToggle}>Cancel Edit</button>
+          <button style={{ backgroundColor: "#E43D12", marginTop:'10px', padding: '10px' }} onClick={handleFormToggle}>Cancel Edit</button>
         </>
       ) : (
         <>
@@ -141,41 +141,41 @@ export default function HealthInfo({ pet, pin }) {
           <p>Breed: {pet.breed}</p>
           <p>Age: {pet.age}</p>
           <p>Adoption Date: {pet.adoptionDate}</p>
-          <button style={{ backgroundColor: "#E43D12", margin:'5px', padding: '10px' }} onClick={handleFormToggle}>Edit Pet Info</button>
+          <button style={{ backgroundColor: "#E43D12", margin:'10px', padding: '10px' }} onClick={handleFormToggle}>Edit Pet Info</button>
         </>
       )}
-      <div style={{ color: '#EBE9E1', backgroundColor: '#E43D12' }}>
-        <h4>Diagnoses:</h4>
+      <div style={{ color: '#E43D12', backgroundColor: '#90BFE964', margin:'5px', padding: '10px' }}>
+        <h2>Diagnoses:</h2>
         {formDiag ? (
           <>
             <form onSubmit={handleDiagSubmit}>
               Issue: <input type="text" placeholder="Issue" name="issue" value={formDiagState.issue} onChange={handleDiagChange}/>
               Location: <input type="text" placeholder="Location" name="location" value={formDiagState.location} onChange={handleDiagChange}></input>
-              <button type="submit" style={{ backgroundColor: "#E43D12", margin:'5px', padding: '10px' }}>Add Issue</button>
+              <button type="submit" style={{ backgroundColor: "#53A3E9", margin:'10px', padding: '10px' }}>Add Issue</button>
             </form>
-            <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", margin:'5px', padding: '10px' }} onClick={handleDiagToggle}>Discard Issue</button>
+            <button style={{ color: 'white', backgroundColor: "#E43D12", margin:'10px', padding: '10px' }} onClick={handleDiagToggle}>Discard Issue</button>
           </>
         ) : (
           <>
-            <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", margin:'5px', padding: '10px' }} onClick={handleDiagToggle}>Add an Issue</button>
+            <button style={{ color: 'white', backgroundColor: "#53A3E9", margin:'10px', padding: '10px' }} onClick={handleDiagToggle}>Add an Issue</button>
           </>
         )}
         {pet.health ? (
           <>
             {pet.health.diagnosis.map((item) => (
-              <div key={item._id} style={{ border: '1px solid #EBE9E1', margin:'5px', padding: '10px' }}>
+              <div key={item._id} style={{ }}>
                 <p>Issue: {item.issue}</p>
                 <p>Location: {item.location}</p>
                 {item.pinPosition ? (
                   <>
-                    <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemovePin}>Remove Pin</button>
+                    <button style={{ color: 'white', backgroundColor: "#E43D12", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemovePin}>Remove Pin</button>
                   </>
                 ) : (
                   <>
-                    <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1" }} data-id={item._id} onClick={handleReadyPin}>{pin.pinState ? 'Setting Pin. Click to Cancel' : 'Add Pin'}</button>
+                    <button style={{ color: 'white', backgroundColor: "#E43D12" }} data-id={item._id} onClick={handleReadyPin}>{pin.pinState ? 'Setting Pin. Click to Cancel' : 'Add Pin'}</button>
                   </>
                 )}
-                <button style={{ color: '#E43D12', backgroundColor: "#EBE9E1", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemoveDiag}>Remove This Issue</button>
+                <button style={{ color: 'white', backgroundColor: "#E43D12", padding: '10px', margin: '10px' }} data-id={item._id} onClick={handleRemoveDiag}>Remove This Issue</button>
               </div>
             ))}
           </>

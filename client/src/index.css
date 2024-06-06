@@ -29,6 +29,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #EBE9E1;
+  padding-top: 1em;
 }
 
 h1 {
