@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PET } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
+import './ownerProfile.css'
 
 function OwnerProfile({ data, pet }) {
 
@@ -74,56 +75,54 @@ function OwnerProfile({ data, pet }) {
 
   return (
     <>
-
-      <div style={{ border: "black solid 1px" }}>
-        <div style={{ border: "blue solid 1px"}}>
-          <h1>Welcome, {me.username}!</h1>
+      <div className="owner-profile">
+        <div className="owner-info">
+          <h1>{me.username}</h1>
           <p>Email: {me.email}</p>
           <p>Pets: {me.petCount}</p>
         </div>
-        <div style={{ border: "red solid 1px"}}>
+        <div className="pet-list-container">
           {petList.map((pet, index) => (
-            <button key={pet._id} style={{backgroundColor: "blue"}} onClick={() => handlePetSelect(index)}>{pet.name}</button>
+            <button className="pet-button" key={pet._id} onClick={() => handlePetSelect(index)}>{pet.name}</button>
           ))}
-          <button onClick={handleAddPet}>Add Pet</button>
+          <button className="add-pet-button"onClick={handleAddPet}>Add Pet</button>
+          {showAddPetForm && (
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Pet Name"
+                value={petFormData.name}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="species"
+                placeholder="Species"
+                value={petFormData.species}
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="breed"
+                placeholder="Breed"
+                value={petFormData.breed}
+                onChange={handleInputChange}
+              />
+              <input
+                type="number"
+                name="age"
+                placeholder="Age"
+                value={petFormData.age}
+                onChange={handleInputChange}
+              />
+              <button type="submit">Submit</button>
+            </form>
+          )}
         </div>
       </div>
-
-      {showAddPetForm && (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Pet Name"
-            value={petFormData.name}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="species"
-            placeholder="Species"
-            value={petFormData.species}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="breed"
-            placeholder="Breed"
-            value={petFormData.breed}
-            onChange={handleInputChange}
-          />
-          <input
-            type="number"
-            name="age"
-            placeholder="Age"
-            value={petFormData.age}
-            onChange={handleInputChange}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      )}
     </>
-  );
+  );  
 }
 
 export default OwnerProfile;

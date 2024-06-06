@@ -1,6 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries'
 import { REMOVE_PET } from '../utils/mutations'
+import './petInfo.css'
 
 // TODO: Add safeguards to removePet to prevent accidentally clicks (Maybe modal)
 
@@ -24,7 +25,7 @@ function PetInfo({ pet }) {
   }
 
   return (
-    <div className="info-section" style={{ padding: "10px"}}>
+    <div className="info-section">
       <h3>Information</h3>
       <p>Species: {pet.species}</p>
       <p>Breed: {pet.breed}</p>
@@ -32,12 +33,16 @@ function PetInfo({ pet }) {
       <p>Adoption Date: {pet.adoptionDate}</p>
       <p>Likes: {pet.likes}</p>
       <p>Dislikes: {pet.dislikes}</p>
-
-      <button data-id={pet._id} onClick={()=>console.log("REPLACE ME")}>Update {pet.name}'s Details' </button>
-
-      <button data-id={pet._id} onClick={handleRemovePet}>Remove {pet.name} from Account</button>
-  </div>
-  )
+  
+      <button data-id={pet._id} onClick={() => console.log("REPLACE ME")}>
+        Update {pet.name}'s Details
+      </button>
+  
+      <button data-id={pet._id} onClick={handleRemovePet}>
+        Remove {pet.name} from Account
+      </button>
+    </div>
+  );  
 }
 
 export default PetInfo

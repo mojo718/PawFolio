@@ -1,7 +1,7 @@
 import React from 'react';
 import OwnerProfile from '../components/ownerProfile';
 import PetProfile from '../components/petProfile';
-// import './Profile.css'; 
+import './profile.css'; 
 import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
