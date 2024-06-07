@@ -65,10 +65,10 @@ function PetProfile({ pet }) {
         <>
           <div className="pet-info">
             <Popup
-              header='Update Profile Pic'
               content={
                 <>
-                  URL: <Input 
+                  <h3>Update Profile Pic:</h3>
+                  <Input 
                     fluid
                     onChange={(text) => setFormState({ ...formState, pic: text.nativeEvent.target.value })} 
                     placeholder={pet.pic || 'Image URL' }
@@ -91,24 +91,24 @@ function PetProfile({ pet }) {
             <div className="pet-details">
               <h2>{pet.name}</h2>
               <Popup
-              header='Update Bio'
-              content={
-                <>
-                  <Input 
-                    fluid
-                    onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
-                    placeholder={pet.bio || `I gots stuff to say` }
-                    />
-                  <Button icon color='green' onClick={handleSubmit}>
-                    <Icon name='check' />
-                    Confirm Change
-                  </Button>
-                </>
-              }
-              on='click'
-              pinned
-              trigger={<p className="pet-bio">Bio: {pet.bio}</p>}
-            />
+                content={
+                  <>
+                    <h3>Update Bio:</h3>
+                    <Input 
+                      fluid
+                      onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
+                      placeholder={pet.bio || `I gots stuff to say` }
+                      />
+                    <Button icon color='green' onClick={handleSubmit}>
+                      <Icon name='check' />
+                      Confirm Change
+                    </Button>
+                  </>
+                }
+                on='click'
+                pinned
+                trigger={<p className="pet-bio">Bio: {pet.bio}</p>}
+              />
             </div>
           </div>
           <div className="nav-buttons">

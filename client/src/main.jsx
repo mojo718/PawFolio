@@ -8,6 +8,7 @@ import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import Profile from './pages/profile.jsx'
 import HealthJournal from './pages/healthJournal.jsx';
+import React from 'react'
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,6 @@ const router = createBrowserRouter([
     // errorElement: <ErrorPage />,
     children: [
       {
-        path: '/home',
         index: true,
         element: <Home />
       }, {
@@ -40,6 +40,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
+  //   <React.StrictMode>
+  //   </React.StrictMode>
+  // </RouterProvider>
 )
 
 // ReactDOM.createRoot(document.getElementById('root')).render(

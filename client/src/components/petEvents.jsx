@@ -1,4 +1,4 @@
-import { Button, Icon, Modal, ModalContent, ModalActions, Header } from 'semantic-ui-react'
+import { Button, Icon, Modal, ModalContent, ModalActions } from 'semantic-ui-react'
 import './petEvents.css';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
@@ -105,10 +105,6 @@ function PetEvents({ pet }) {
         open={addEventState}
         size='small'
       >
-        <Header icon>
-          <Icon name='calendar plus outline' />
-          Adding an Event for {pet.name}
-        </Header>
         <ModalContent>
           <form>
             <input type="text" placeholder="Title" name="title" value={formState.title} onChange={handleChange}></input>
