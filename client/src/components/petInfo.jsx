@@ -44,12 +44,6 @@ function PetInfo({ pet }) {
     }
   }
 
-  const [formToggleState, toggleformState] = useState(false)
-
-  const handleToggleForm = () => {
-    toggleformState(!formToggleState)
-  }
-
   const [open, setOpen] = useState(false)
 
   return (
@@ -71,21 +65,21 @@ function PetInfo({ pet }) {
           Remove {pet.name} from Account
         </button>
       </div>
-{/* teststst */}
-      <Modal
+
+      {/* <Modal
         basic
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
         size='small'
-        trigger={<Button>Basic Modal</Button>}
       >
         <ModalContent>
-          <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
-          <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
-          <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
-          <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
-          <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
+          <p></p><input type="text" placeholder={pet.species} name="location" value={formState.location} onChange={handleChange}></input>
+          <input type="text" placeholder={pet.breed} name="breed" value={formState.breed} onChange={handleChange}></input>
+          <input type="text" placeholder={pet.age} name="age" value={formState.age} onChange={handleChange}></input>
+          <input type="text" placeholder={pet.adoptionDate} name="adoptionDate" value={formState.adoptionDate} onChange={handleChange}></input>
+          <input type="text" placeholder={pet.likes} name="likes" value={formState.likes} onChange={handleChange}></input>
+          <input type="text" placeholder={pet.dislikes} name="dislikes" value={formState.dislikes} onChange={handleChange}></input>
         </ModalContent>
         <ModalActions>
           <Button basic color='red' inverted onClick={() => setOpen(false)}>
@@ -95,7 +89,7 @@ function PetInfo({ pet }) {
             <Icon name='checkmark' /> Yes
           </Button>
         </ModalActions>
-      </Modal>
+      </Modal> */}
     </>
   );  
 }
