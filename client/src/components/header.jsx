@@ -9,6 +9,10 @@ const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleProfileClick = () => {
+    navigate('/profile');
+  }
+
+  const handleMenuClick = () => {
     setDropdownOpen(!dropdownOpen); // Toggle dropdown menu
   };
 
@@ -18,17 +22,24 @@ const Header = () => {
     if (Auth.logout()) {
       navigate('/')        
   }
+
+
+
+
 }
 
   return (
     <header className="header">
       <div className="header-content">
-        {/* Profile Button */}
-        <div className="profile-button" onClick={handleProfileClick}>
+        <h2 className='name'>PawFolio</h2>
+      <div className="profile-button" onClick={handleProfileClick}>
           <Icon name='user circle' size='big' />
+        </div>
+        <div className="menu-button" onClick={handleMenuClick}>
+          <Icon name='bars' size='big' />
           {dropdownOpen && (
             <div className="dropdown-menu">
-              <button className="dropdown-item" onClick={handleLogoutClick(navigate)}>Logout</button>
+              <button className="dropdown-item" onClick={handleLogoutClick}>Logout</button>
             </div>
           )}
         </div>

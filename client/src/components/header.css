@@ -8,6 +8,10 @@
   border: '1px solid black';
 }
 
+.name {
+  justify-content: left;
+}
+
 .header-content {
   color: white;
   display: flex;
@@ -16,9 +20,16 @@
   padding-top: .5em;
 }
 
-.profile-button {
+.menu-button {
   cursor: pointer;
   justify-content: right;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.profile-button {
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .dropdown-menu {
