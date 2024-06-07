@@ -71,7 +71,7 @@ function PetInfo({ pet }) {
           Remove {pet.name} from Account
         </button>
       </div>
-
+{/* teststst */}
       <Modal
         basic
         onClose={() => setOpen(false)}
