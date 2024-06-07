@@ -21,6 +21,7 @@ const petSchema = new Schema(
     },
     pic: {
       type: String,
+      default: ''
     },
     bio: {
       type: String,

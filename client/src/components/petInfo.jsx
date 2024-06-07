@@ -32,7 +32,7 @@ function PetInfo({ pet }) {
   const [removePet] = useMutation(REMOVE_PET, {refetchQueries: [QUERY_ME]})
 
   const handleRemovePet = async (event) => {
-    console.log(event.target.dataset.id)
+
     try {
       await removePet({
         variables : {

@@ -63,8 +63,8 @@ const Signup = () => {
             ) : (
               <form className="ui form" onSubmit={handleFormSubmit}>
                 <div className="field">
-                <label class="label">Username</label>
-                <div class="ui left icon input">
+                <label className="label">Username</label>
+                <div className="ui left icon input">
                 <input
                   className="form-input"
                   placeholder="Your username"
@@ -73,13 +73,13 @@ const Signup = () => {
                   value={formState.username}
                   onChange={handleChange}
                 />
-                <i class="user icon"></i>
+                <i className="user icon"></i>
                 </div>
                 </div>
 
                 <div className="field">
-                <label class="label">Email</label>
-                <div class="ui left icon input">
+                <label className="label">Email</label>
+                <div className="ui left icon input">
                 <input
                   className="form-input"
                   placeholder="Your email"
@@ -88,13 +88,13 @@ const Signup = () => {
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <i class="envelope icon"></i>
+                <i className="envelope icon"></i>
                 </div>
                 </div>
 
                 <div className="field">
-                <label class="label">Password</label>
-          <div class="ui left icon input">
+                <label className="label">Password</label>
+          <div className="ui left icon input">
                 <input
                   className="form-input"
                   placeholder="******"
@@ -103,7 +103,7 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                 <i class="lock icon"></i>
+                 <i className="lock icon"></i>
                 </div>
 
                 </div>
