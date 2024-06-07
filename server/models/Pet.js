@@ -15,7 +15,7 @@ const petSchema = new Schema(
     username: {
       type: String,
       trim: true,
-      unique: true,
+      // unique: true, (Not sure why this generates the same username)
       required: true,
       default: uuidv4()
     },
