@@ -1,0 +1,17 @@
+{
+    "name": "PawFolio",
+    "short_name": "PawFolio",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#EBE9E1",
+    "theme_color": "#E43D12",
+    "description": "A portfolio for all of your pets!",
+    "icons": [
+      {
+        "src": "PawFolio-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
