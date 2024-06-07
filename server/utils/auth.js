@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 // TODO: secret needs to hidden in render, but how do we do that??
-const secret = process.env.MY_SECRET;
+const secret = process.env.MY_SECRET || 'localsecret'
 
 const expiration = '2h';
 
