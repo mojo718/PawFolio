@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   const handleLogoutClick = () => {
-    navigate('/home');
+    navigate('/');
 
     if (Auth.logout()) {
       navigate('/')        
