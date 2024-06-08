@@ -28,7 +28,7 @@ export const ADD_PET = gql`
   mutation Mutation($species: String!, $name: String, $breed: String, $age: Int) {
     addPet(species: $species, name: $name, breed: $breed, age: $age) {
       _id
-      username
+      
     }
   }
 `;
@@ -37,7 +37,7 @@ export const REMOVE_PET = gql`
   mutation Mutation($petId: String!) {
     removePet(petId: $petId) {
       _id
-      username
+    
       petCount
     }
   }

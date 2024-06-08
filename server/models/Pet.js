@@ -12,13 +12,13 @@ const petSchema = new Schema(
       trim: true,
       default: "Unnamed"
     },
-    username: {
-      type: String,
-      trim: true,
-      unique: true,
-      required: true,
-      default: () => uuidv4()
-    },
+    // username: {
+    //   type: String,
+    //   trim: true,
+    //   unique: true,
+    //   required: true,
+    //   default: () => uuidv4()
+    // },
     pic: {
       type: String,
       default: ''
