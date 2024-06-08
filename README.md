@@ -18,8 +18,8 @@ PawFolio is a comprehensive pet management app designed to help pet owners effor
 https://pawfolio-4kk9.onrender.com/
 
 ## ScreenShots
-![Homepage](client\assets\HomePage.png "This is a screenshot of the Homepage")
-![Profile](client\assets\Profile.png "This is a screenshot of the Profile Page")
+![HomePage](client/assets/HomePage.png "This is a screenshot of the Home Page")
+![Profile](client/assets/Profile.png "This is a screenshot of the Profile Page")
 
 ## License
       This application is covered by the MIT license.
