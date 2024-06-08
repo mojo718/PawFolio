@@ -65,6 +65,17 @@ form input {
     width: calc(100% - 22px); 
 }
 
+select {
+    margin-bottom: 5px;
+    padding: 10px;
+    border: none;
+    background-color:#EBE9E1;
+    color: black;
+    border-radius: 5px;
+    font-size: 14px;
+    width: calc(100% - 22px); 
+}
+
 form button {
     padding: 10px;
     background-color: rgb(57, 57, 253);

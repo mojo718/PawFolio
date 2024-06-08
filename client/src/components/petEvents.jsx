@@ -77,7 +77,7 @@ function PetEvents({ pet }) {
         <h2>Events for {pet.name}</h2>
         <button className="add-event-button" onClick={() => toggleAddEvent(true)}>
           Add Event
-          <i className="plus icon" aria-hidden="true"></i>
+          <i className="calendar plus icon" aria-hidden="true"></i>
         </button>
         {pet.events.length > 0 ? (
           <ul>
@@ -112,7 +112,10 @@ function PetEvents({ pet }) {
       >
         <ModalContent>
           <form>
+            <h3>Add Event <Icon name='calendar plus icon'></Icon></h3>
+            <label for="title">Title:</label>
             <input type="text" placeholder="Title" name="title" value={formState.title} onChange={handleChange}></input>
+            <label for="type">Type:</label>
             <select name='type' onChange={handleChange}>
               <option value=''>Type</option>
               <option value="Vet Visit">Vet Visit</option>
@@ -122,7 +125,9 @@ function PetEvents({ pet }) {
               <option value="Feeding">Feeding</option>
               <option value="Other">Other</option>
             </select>
+            <label for="location">Location:</label>
             <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
+            <label for="startTime">Date and Time:</label>
             <DatePicker
               selected={startDate}
               onChange={(date) => {
@@ -141,10 +146,10 @@ function PetEvents({ pet }) {
         </ModalContent>
         <ModalActions>
           <Button basic color='red' inverted onClick={handleFormClose}>
-            <Icon name='remove' /> No
+            <Icon name='remove' /> Discard Event
           </Button>
           <Button color='green' inverted onClick={handleFormSubmit}>
-            <Icon name='checkmark' /> Yes
+            <Icon name='checkmark' /> Add Event
           </Button>
         </ModalActions>
       </Modal>
