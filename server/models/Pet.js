@@ -14,10 +14,10 @@ const petSchema = new Schema(
     },
     username: {
       type: String,
-      trim: true,
+      // trim: true,
       // unique: true, (Not sure why this generates the same username)
-      required: true,
-      default: uuidv4()
+      // required: true,
+      // default: uuidv4()
     },
     pic: {
       type: String,
