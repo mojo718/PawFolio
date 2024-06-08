@@ -13,6 +13,11 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 20px; 
+  max-width: 50%;
+}
+
+.ui.top.left.popup.transition.visible {
+  transform: translateY(85px) translateX(75px) !important;
 }
 
 .pet-details {
@@ -22,6 +27,7 @@
   color: #ff4500;
   width: 100%; 
   font-family: 'Arial', sans-serif;
+  overflow: hidden;
 }
 
 .pet-details h2 {
