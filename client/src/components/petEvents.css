@@ -16,7 +16,7 @@
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .add-event-button {
@@ -30,7 +30,8 @@
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .add-event-button .plus.icon {
@@ -48,26 +49,46 @@
   padding: 0;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
 }
 
 .events-section .event-item {
   margin-bottom: 20px;
-  text-align: left; 
 }
 
-.events-section h3 {
-  font-size: 16px;
-  color: #333;
-}
-
-.events-section p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 12px;
+.events-section .event-info {
   background-color: rgba(144, 191, 233, 0.394);
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
   width: 75%;
   margin-left: auto;
   margin-right: auto;
+  text-align: left; 
+}
+
+.events-section .event-info p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.remove-event-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #E43D12;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.remove-event-button .close.icon {
+  margin-left: 5px;
+}
+
+.remove-event-button:hover {
+  background-color: #d13b00; 
 }
