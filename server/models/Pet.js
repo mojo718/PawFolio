@@ -18,6 +18,7 @@ const petSchema = new Schema(
       // unique: true, (Not sure why this generates the same username)
       // required: true,
       // default: uuidv4()
+      
     },
     pic: {
       type: String,
