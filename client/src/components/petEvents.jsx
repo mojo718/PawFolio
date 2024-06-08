@@ -83,21 +83,26 @@ function PetEvents({ pet }) {
           <ul>
             {eventsArray.map((event) => (
               <li key={event._id} className="event-item">
-                <p>{event.title}</p>
-                {event.type ? (<p>{event.type}</p>) : null}
-                <p>Location: {event.location}</p>
-                <p><strong>Date:</strong> {moment((parseInt(event.startTime))).format('MMMM D YYYY, h:mm:ss a')}</p>
-                <p>Status: {event.status}</p>
-                {/* <p>Notes: {event.notes}</p> */}
-                <button className="ui icon red button" data-id={event._id} onClick={handleRemoveEvent}><i aria-hidden="true" className="close icon" data-id={event._id}></i></button>
+                <div className="event-info">
+                  <p><strong>Title:</strong> {event.title}</p>
+                  {event.type ? (<p><strong>Type:</strong> {event.type}</p>) : null}
+                  <p><strong>Location:</strong> {event.location}</p>
+                  <p><strong>Date:</strong> {moment((parseInt(event.startTime))).format('MMMM D YYYY, h:mm:ss a')}</p>
+                  <p><strong>Status:</strong> {event.status}</p>
+                  {/* <p>Notes: {event.notes}</p> */}
+                  <button className="remove-event-button" data-id={event._id} onClick={handleRemoveEvent}>
+                    Remove Event
+                    <i aria-hidden="true" className="close icon" data-id={event._id}></i>
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
         ) : (
           <p>No events found for this pet.</p>
         )}
-      </div>  
-  
+      </div>
+    
       <Modal
         basic
         onClose={() => toggleAddEvent(false)}
@@ -144,7 +149,7 @@ function PetEvents({ pet }) {
         </ModalActions>
       </Modal>
     </>
-  )
+  );  
 }
 
 export default PetEvents

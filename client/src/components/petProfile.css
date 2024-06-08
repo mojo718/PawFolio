@@ -15,6 +15,10 @@
   margin-right: 20px; 
 }
 
+.ui.top.left.popup.transition.visible {
+  transform: translateY(85px) translateX(75px) !important;
+}
+
 .pet-details {
   display: flex;
   flex-direction: column;
