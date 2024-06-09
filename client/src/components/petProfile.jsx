@@ -65,6 +65,7 @@ function PetProfile({ pet }) {
         <>
           <div className="pet-info">
             <Popup
+              position='bottom center'
               content={
                 <>
                   <h3>Update Profile Pic:</h3>
@@ -91,13 +92,14 @@ function PetProfile({ pet }) {
             <div className="pet-details">
               <h2>{pet.name}</h2>
               <Popup
+                position='bottom center'
                 content={
                   <>
                     <h3>Update Bio:</h3>
                     <Form>
                       <TextArea
                         placeholder={pet.bio || `I gots stuff to say` }
-                        rows={10}
+                        rows={8}
                         onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
                         ></TextArea>
                     </Form>
