@@ -9,8 +9,8 @@ PawFolio is a comprehensive pet management app designed to help pet owners effor
 
 ## Table of Contents 📖
 - [Deployed Application](#Deployed-application-🚀)
-- [License](#license-MIT)
 - [ScreenShots](#Screenshots)
+- [License](#license-MIT)
 - [Contibuters](#Contributors-🧑‍🤝‍🧑)
 
 
@@ -28,6 +28,6 @@ https://pawfolio-4kk9.onrender.com/
 Ryan Moise, Chelsea Ramdat, Jackie Gould, and Ben Montijo
 
 ## Questions 🙋
-If there are any questions, feel free to email us at:  ryan.a.moises@gmail.com, Cbramdat@gmail.com, and mojo718@yahoo.com
+If there are any questions, feel free to email us at:  ryan.a.moises@gmail.com, Cbramdat@gmail.com, Jmgould913@gmail.com, and mojo718@yahoo.com
 
 You can also find me on GitHub at: [PawFolio](https://www.github.com/PawFolio)
