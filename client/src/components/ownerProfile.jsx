@@ -4,9 +4,9 @@ import { ADD_PET } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import './ownerProfile.css'
 import Header from "../components/header.jsx";
+import { Popup, Button } from 'semantic-ui-react';
 
 function OwnerProfile({ data, pet }) {
-  console.log(data.me.pets)
   const [addPet] = useMutation(ADD_PET, {refetchQueries: [QUERY_ME]});
   const [showAddPetForm, setShowAddPetForm] = useState(false);
   const [petFormData, setPetFormData] = useState({
@@ -76,6 +76,7 @@ function OwnerProfile({ data, pet }) {
 
   return (
     <>
+      <Header />
       <div className="owner-profile">
         <div className="owner-info">
           <h1>{me.username}</h1>
@@ -86,7 +87,20 @@ function OwnerProfile({ data, pet }) {
           {petList.map((pet, index) => (
             <button className="pet-button" key={pet._id} onClick={() => handlePetSelect(index)}>{pet.name}</button>
           ))}
-          <button className="add-pet-button"onClick={handleAddPet}>Add Pet</button>
+          {data.me.pets.length < 1 ? (
+            <>
+              <Popup 
+                content='Start by adding a pet!' 
+                open
+                position='right center'
+                size='large'
+                offset={[0, 75]}
+                style={{ fontWeight: "bolder" }}
+                trigger={<button className="add-pet-button" onClick={handleAddPet} icon='add'>Add Pet</button>} />
+            </>
+          ) : (
+            <button className="add-pet-button" onClick={handleAddPet}>Add Pet</button>
+          )}
           {showAddPetForm && (
             <form onSubmit={handleSubmit}>
               <input
@@ -121,9 +135,6 @@ function OwnerProfile({ data, pet }) {
             </form>
           )}
         </div>
-
-        
-        <Header />
       </div>
     </>
   );  
