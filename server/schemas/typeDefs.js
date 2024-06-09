@@ -89,7 +89,7 @@ const typeDefs = `
     updateBio(petId: String!, bio: String): Pet
     addEvent(petId: ID!, title: String!, startTime: String, location: String, type: String): Pet
     removeEvent(petId: ID!, eventId: ID!): Pet
-    updatePet(petId: String!, name: String, pic: String, bio: String, species: String, breed: String, age: Int, adoptionDate: String): Pet
+    updatePet(petId: String!, name: String, pic: String, bio: String, species: String, breed: String, age: Int, adoptionDate: String, likes: String, dislikes: String): Pet
     addAllergy(petId: String!, name: String!): Pet
     addDiag(petId: String!, issue: String!, startDate: String, endDate: String, location: String): Pet
     removeDiag(petId: String!, diagId: String!): Pet
