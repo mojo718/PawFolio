@@ -67,13 +67,15 @@ function PetInfo({ pet }) {
 
   // ---------------Code for removing pet --------------- //
 
-  const [removePet] = useMutation(REMOVE_PET, {refetchQueries: [QUERY_ME]})
+  const [openRemove, setOpenRemove] = useState(false);
 
-  const handleRemovePet = async (event) => {
+  const [removePet] = useMutation(REMOVE_PET, {refetchQueries: [QUERY_ME]});
+
+  const confirmRemovePet = async (event) => {
     try {
       await removePet({
         variables : {
-          petId: event.target.dataset.id
+          petId: pet._id
         }
       })
     } catch (err) {
@@ -96,11 +98,12 @@ function PetInfo({ pet }) {
           Update {pet.name}'s Details
         </button>
 
-        <button style={{ backgroundColor: 'red', color: 'white', fontWeight: 'bold' }} data-id={pet._id} onClick={handleRemovePet}>
+        <button style={{ backgroundColor: 'red', color: 'white', fontWeight: 'bold' }} data-id={pet._id} onClick={() => setOpenRemove(true)}>
           <i></i>Remove {pet.name} from Account
         </button>
       </div>
 
+      {/* Modal for updating pet info */}
       <Modal
         basic
         onClose={() => setOpenUpdate(false)}
@@ -143,6 +146,28 @@ function PetInfo({ pet }) {
           </Button>
           <Button color='green' inverted onClick={handleUpdateSubmit}>
             <Icon name='checkmark' /> Confirm Changes
+          </Button>
+        </ModalActions>
+      </Modal>
+
+      {/* Modal that confirms pet removal */}
+      <Modal
+        basic
+        onClose={() => setOpenRemove(false)}
+        onOpen={() => setOpenRemove(true)}
+        open={openRemove}
+        size='small'
+      >
+        <ModalContent>
+          <h2>Are you sure you want to remove {pet.name} from your account?</h2>
+          <h2>Warning: Your pet's data will also be deleted.</h2>
+        </ModalContent>
+        <ModalActions>
+          <Button basic inverted onClick={() => setOpenRemove(false)}>
+            <Icon name='remove' /> No
+          </Button>
+          <Button color='red' inverted onClick={confirmRemovePet}>
+            <Icon name='checkmark' /> Remove {pet.name}
           </Button>
         </ModalActions>
       </Modal>
