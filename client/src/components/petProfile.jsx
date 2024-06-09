@@ -4,7 +4,7 @@ import './petProfile.css'
 import PetInfo from './petInfo'
 import PetEvents from './petEvents'
 import defaultPFP from '../assets/profilePic/lanaPFP360x360.jpg'
-import { Button, Icon, Popup, Input, Checkbox } from 'semantic-ui-react'
+import { Button, Icon, Popup, Input, Checkbox, Form, TextArea } from 'semantic-ui-react'
 import { QUERY_ME } from '../utils/queries';
 import { UPDATE_PET } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
@@ -94,11 +94,13 @@ function PetProfile({ pet }) {
                 content={
                   <>
                     <h3>Update Bio:</h3>
-                    <Input 
-                      fluid
-                      onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
-                      placeholder={pet.bio || `I gots stuff to say` }
-                      />
+                    <Form>
+                      <TextArea
+                        placeholder={pet.bio || `I gots stuff to say` }
+                        rows={10}
+                        onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
+                        ></TextArea>
+                    </Form>
                     <Button icon color='green' onClick={handleSubmit}>
                       <Icon name='check' />
                       Confirm Change

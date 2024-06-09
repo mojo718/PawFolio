@@ -6,7 +6,7 @@ import './ownerProfile.css'
 import Header from "../components/header.jsx";
 
 function OwnerProfile({ data, pet }) {
-
+  console.log(data.me.pets)
   const [addPet] = useMutation(ADD_PET, {refetchQueries: [QUERY_ME]});
   const [showAddPetForm, setShowAddPetForm] = useState(false);
   const [petFormData, setPetFormData] = useState({
@@ -121,6 +121,8 @@ function OwnerProfile({ data, pet }) {
             </form>
           )}
         </div>
+
+        
         <Header />
       </div>
     </>
