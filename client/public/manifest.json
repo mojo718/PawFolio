@@ -1,7 +1,7 @@
 {
     "name": "PawFolio",
     "short_name": "PawFolio",
-    "start_url": ".",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#EBE9E1",
     "theme_color": "#E43D12",
