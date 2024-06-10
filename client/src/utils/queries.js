@@ -15,6 +15,7 @@ export const QUERY_ME = gql`
         age
         bio
         pic
+        adoptionDate
         likes
         dislikes
         events {
