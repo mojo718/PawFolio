@@ -22,10 +22,11 @@ const Home = () => {
     return (
         <div className="home-container">
             <div className="description">
-                <h1>Welcome to Our Site</h1>
-                <p>This is a brief description about the site.</p>
+                <h1>PawFolio</h1>
+                <h2>Your Ultimate Pet Management App!</h2>
+                <p>PawFolio is a comprehensive pet management app designed to help pet owners effortlessly organize and access all their pets' important information in one convenient place. Whether you have a playful puppy, a curious kitten, or any other beloved pet, PawFolio ensures that you stay on top of their needs, health, and activities.</p>
             </div>
-            <div className="button">
+            <div className="button" style={{ margin:'10px', padding: '10px' }}>
                 <button onClick={handleLoginClick}>Login</button>
                 <button onClick={handleSignUpClick}>Sign Up</button>
             </div>

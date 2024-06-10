@@ -17,6 +17,7 @@ PawFolio is a comprehensive pet management app designed to help pet owners effor
 ## Deployed-Application
 https://pawfolio-kk2s.onrender.com/
 
+
 ## ScreenShots
 ![HomePage](client/assets/HomePage.png "This is a screenshot of the Home Page")
 ![Profile](client/assets/Profile.png "This is a screenshot of the Profile Page")

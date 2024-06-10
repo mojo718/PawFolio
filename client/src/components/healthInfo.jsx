@@ -7,8 +7,6 @@ import { QUERY_PET_HEALTH } from '../utils/queries';
 
 export default function HealthInfo({ pet, pin }) {
 
-  console.log("test", pet.health)
-
   // ---------------Code for profile edit--------------- //
 
   const [formEdit, toggleEdit] = useState(false);

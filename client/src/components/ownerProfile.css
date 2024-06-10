@@ -5,6 +5,7 @@
     border-radius: 5px;
     margin-bottom: 10px;
     font-family: 'Arial', sans-serif;
+    word-wrap: break-word;
 }
 
 .pet-list-container {
@@ -54,6 +55,17 @@ form {
 }
 
 form input {
+    margin-bottom: 5px;
+    padding: 10px;
+    border: none;
+    background-color:#EBE9E1;
+    color: black;
+    border-radius: 5px;
+    font-size: 14px;
+    width: calc(100% - 22px); 
+}
+
+select {
     margin-bottom: 5px;
     padding: 10px;
     border: none;

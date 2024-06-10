@@ -1,4 +1,4 @@
-import { Button, Icon, Modal, ModalContent, ModalActions, Header } from 'semantic-ui-react'
+import { Button, Icon, Modal, ModalContent, ModalActions } from 'semantic-ui-react'
 import './petEvents.css';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
@@ -42,7 +42,7 @@ function PetEvents({ pet }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState.startTime)
+
     try {
       await addEvent({
         variables: { ...formState, startTime: formState.startTime, petId: pet._id}
@@ -77,27 +77,32 @@ function PetEvents({ pet }) {
         <h2>Events for {pet.name}</h2>
         <button className="add-event-button" onClick={() => toggleAddEvent(true)}>
           Add Event
-          <i className="plus icon" aria-hidden="true"></i>
+          <i className="calendar plus icon" aria-hidden="true"></i>
         </button>
         {pet.events.length > 0 ? (
           <ul>
             {eventsArray.map((event) => (
               <li key={event._id} className="event-item">
-                <p>{event.title}</p>
-                {event.type ? (<p>{event.type}</p>) : null}
-                <p>Location: {event.location}</p>
-                <p><strong>Date:</strong> {moment((parseInt(event.startTime))).format('MMMM D YYYY, h:mm:ss a')}</p>
-                <p>Status: {event.status}</p>
-                {/* <p>Notes: {event.notes}</p> */}
-                <button className="ui icon red button" data-id={event._id} onClick={handleRemoveEvent}><i aria-hidden="true" className="close icon" data-id={event._id}></i></button>
+                <div className="event-info">
+                  <p><strong>Title:</strong> {event.title}</p>
+                  {event.type ? (<p><strong>Type:</strong> {event.type}</p>) : null}
+                  <p><strong>Date:</strong> {moment((parseInt(event.startTime))).format('MMMM D YYYY, h:mm:ss a')}</p>
+                  <p><strong>Location:</strong> {event.location}</p>
+                  <p><strong>Status:</strong> {event.status}</p>
+                  {/* <p>Notes: {event.notes}</p> */}
+                  <button className="remove-event-button" data-id={event._id} onClick={handleRemoveEvent}>
+                    Remove Event
+                    <i aria-hidden="true" className="close icon" data-id={event._id}></i>
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
         ) : (
           <p>No events found for this pet.</p>
         )}
-      </div>  
-  
+      </div>
+    
       <Modal
         basic
         onClose={() => toggleAddEvent(false)}
@@ -105,13 +110,12 @@ function PetEvents({ pet }) {
         open={addEventState}
         size='small'
       >
-        <Header icon>
-          <Icon name='calendar plus outline' />
-          Adding an Event for {pet.name}
-        </Header>
         <ModalContent>
           <form>
+            <h3>Add Event <Icon name='calendar plus icon'></Icon></h3>
+            <label for="title">Title:</label>
             <input type="text" placeholder="Title" name="title" value={formState.title} onChange={handleChange}></input>
+            <label for="type">Type:</label>
             <select name='type' onChange={handleChange}>
               <option value=''>Type</option>
               <option value="Vet Visit">Vet Visit</option>
@@ -121,34 +125,38 @@ function PetEvents({ pet }) {
               <option value="Feeding">Feeding</option>
               <option value="Other">Other</option>
             </select>
-            <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
+            <label for="startTime">Date and Time:</label>
             <DatePicker
               selected={startDate}
               onChange={(date) => {
-                console.log("Change", date)
                 setStartDate(date);
                 setFormState({
                   ...formState,
                   startTime: convertToUnix(date).toString()
                 });
               }}
+              showMonthDropdown
+              useShortMonthInDropdown
+              showYearDropdown
               timeInputLabel="Time:"
               dateFormat="MM/dd/yyyy h:mm aa"
               showTimeInput
             />
+            <label for="location">Location:</label>
+            <input type="text" placeholder="Location" name="location" value={formState.location} onChange={handleChange}></input>
           </form>
         </ModalContent>
         <ModalActions>
           <Button basic color='red' inverted onClick={handleFormClose}>
-            <Icon name='remove' /> No
+            <Icon name='remove' /> Discard Event
           </Button>
           <Button color='green' inverted onClick={handleFormSubmit}>
-            <Icon name='checkmark' /> Yes
+            <Icon name='checkmark' /> Add Event
           </Button>
         </ModalActions>
       </Modal>
     </>
-  )
+  );  
 }
 
 export default PetEvents

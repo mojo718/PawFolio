@@ -31,7 +31,7 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <OwnerProfile data={data} pet={{petState, selectPet}}/>
-      <PetProfile pet={pet} />
+      {pet ? (<PetProfile pet={pet} />) : null }
     </div>
   );
 };

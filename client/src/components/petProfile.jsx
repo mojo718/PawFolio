@@ -4,7 +4,7 @@ import './petProfile.css'
 import PetInfo from './petInfo'
 import PetEvents from './petEvents'
 import defaultPFP from '../assets/profilePic/lanaPFP360x360.jpg'
-import { Button, Icon, Popup, Input, Checkbox } from 'semantic-ui-react'
+import { Button, Icon, Popup, Input, Checkbox, Form, TextArea } from 'semantic-ui-react'
 import { QUERY_ME } from '../utils/queries';
 import { UPDATE_PET } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
@@ -65,10 +65,11 @@ function PetProfile({ pet }) {
         <>
           <div className="pet-info">
             <Popup
-              header='Update Profile Pic'
+              position='bottom center'
               content={
                 <>
-                  URL: <Input 
+                  <h3>Update Profile Pic:</h3>
+                  <Input 
                     fluid
                     onChange={(text) => setFormState({ ...formState, pic: text.nativeEvent.target.value })} 
                     placeholder={pet.pic || 'Image URL' }
@@ -91,24 +92,27 @@ function PetProfile({ pet }) {
             <div className="pet-details">
               <h2>{pet.name}</h2>
               <Popup
-              header='Update Bio'
-              content={
-                <>
-                  <Input 
-                    fluid
-                    onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
-                    placeholder={pet.bio || `I gots stuff to say` }
-                    />
-                  <Button icon color='green' onClick={handleSubmit}>
-                    <Icon name='check' />
-                    Confirm Change
-                  </Button>
-                </>
-              }
-              on='click'
-              pinned
-              trigger={<p className="pet-bio">Bio: {pet.bio}</p>}
-            />
+                position='bottom center'
+                content={
+                  <>
+                    <h3>Update Bio:</h3>
+                    <Form>
+                      <TextArea
+                        placeholder={pet.bio || `I gots stuff to say` }
+                        rows={8}
+                        onChange={(text) => setFormState({ ...formState, bio: text.nativeEvent.target.value })} 
+                        ></TextArea>
+                    </Form>
+                    <Button icon color='green' onClick={handleSubmit}>
+                      <Icon name='check' />
+                      Confirm Change
+                    </Button>
+                  </>
+                }
+                on='click'
+                pinned
+                trigger={<p className="pet-bio">Bio: {pet.bio}</p>}
+              />
             </div>
           </div>
           <div className="nav-buttons">

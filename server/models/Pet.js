@@ -17,10 +17,11 @@ const petSchema = new Schema(
       trim: true,
       unique: true,
       required: true,
-      default: uuidv4()
+      default: () => uuidv4()
     },
     pic: {
       type: String,
+      default: ''
     },
     bio: {
       type: String,

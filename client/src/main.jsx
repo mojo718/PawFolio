@@ -8,6 +8,7 @@ import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import Profile from './pages/profile.jsx'
 import HealthJournal from './pages/healthJournal.jsx';
+import React from 'react'
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,6 @@ const router = createBrowserRouter([
     // errorElement: <ErrorPage />,
     children: [
       {
-        path: '/home',
         index: true,
         element: <Home />
       }, {
@@ -41,6 +41,18 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
 )
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      })
+      .catch(error => {
+        console.log('ServiceWorker registration failed: ', error);
+      });
+  });
+}
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //   <React.StrictMode>
