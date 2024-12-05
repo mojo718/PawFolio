@@ -1,0 +1,33 @@
+.bg-left {
+    background: rgba(145, 196, 240, 0.478); 
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    width: 40%;
+}
+.bg-right {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #ddd; 
+    position: absolute;
+    width: 60%;
+    padding: 150px 30px 20px 30px
+}
+
+.logo {
+    width: 300px;
+    height: 200px;
+    transform: scale(0.25);
+  }
+
+.login {
+    padding: 10px 180px 10px 180px;
+    margin: 20px;
+}
+
+.signup {
+    padding: 10px 180px 10px 180px;
+    margin: 20px;
+}

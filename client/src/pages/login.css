@@ -6,15 +6,20 @@
     padding-top: 3em;
 }
 
-.head {
+.head1 {
     font-size: 3em;
-    padding: 10px 0px 0px 0px;
-    text-align: left;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+}
+
+.tag {
+    padding: 0px 0px 30px 0px;
+    text-align: center;
 }
 
 .text {
     font-size: 1em;
-    text-align: left;
+    text-align: center;
 }
 
 .field {
@@ -24,7 +29,34 @@
 .ui.button.primary {
     background-color: #E43D12;
     color: #EBE9E1;
+    padding: 11px 80px 11px 80px;
 }
+
+.left.floated.seven.wide.column {
+    background: rgba(145, 196, 240, 0.478); 
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    width: 40%;
+    justify-content: center;
+}
+
+.right.floated.seven.wide.column {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #ddd; 
+    position: absolute;
+    width: 60%;
+    padding: 150px 100px 20px 100px
+}
+
+.logo {
+    width: 300px;
+    height: 200px;
+    transform: scale(0.25);
+  }
 
 @media (max-width: 1024px) {
     .ui.grid {

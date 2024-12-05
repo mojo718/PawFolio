@@ -5,7 +5,8 @@ import { LOGIN_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 import "./login.css";
-import Footer from "../components/footer.jsx";
+// import Footer from "../components/footer.jsx";
+import tempLogo from '../assets/Pawfolio1.png'
 
 
 const Login = () => {
@@ -46,22 +47,31 @@ const Login = () => {
   };
 
   return (
-    <main className="main" style={{ minHeight: "100vh", minWidth: "100vh" }}>
-      <div className="ui grid" style={{ minHeight: "100vh", minWidth: "100vh" }}>
+    <main className="main">
+
+{/* Removed from line 49 -  style={{ minHeight: "100vh", minWidth: "100vh" }} to fix footer */}
+
+      {/* <div className="ui grid" style={{ minHeight: "100vh", minWidth: "100vh" }}> */}
         <div className="left floated seven wide column">
+
+        <div className="logo">
+                <img src={tempLogo} alt="Logo" />
+            </div>
+
           {/* <div className="ui two column very relaxed grid">
           <div className="column"> */}
           {/* <div className="content"> */}
-          <h4 className="head">Welcome Back!</h4>
-          <div className="description">
-            <p className="text">We are glad to see you again! Please log in to continue.</p>
-          </div>
+          {/* <h4 className="head">Welcome Back!</h4> */}
+          {/* <div className="description"> */}
+            {/* <p className="text">We are glad to see you again! Please log in to continue.</p> */}
+          {/* </div> */}
           {/* </div> */}
         </div>
         <div className="right floated seven wide column">
           {/* <div className="column">
           <div className="content"> */}
-          <h4 className="head">Login</h4>
+          <h4 className="head1">Welcome Back!</h4>
+          <h5 className="tag">Login to continue</h5>
           <div className="description">
             {data ? (
               <p>
@@ -100,7 +110,7 @@ const Login = () => {
                 </div>
                 </div>
                 <button className="ui button primary" type="submit">
-                  Submit
+                  Login
                 </button>
               </form>
             )}
@@ -113,9 +123,9 @@ const Login = () => {
             )}
           </div>
         </div>
-      </div>
+      {/* </div> */}
       {/* <div className="ui vertical divider"></div> */}
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 };
@@ -123,3 +133,4 @@ const Login = () => {
 export default Login;
 
 
+// ownerProfile.css has all of the form css. Need to  adjust to remove dic color on form on log in / sign up page

@@ -5,7 +5,8 @@ import { CREATE_OWNER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 import "./signup.css";
-import Footer from "../components/footer.jsx";
+// import Footer from "../components/footer.jsx";
+import tempLogo from '../assets/Pawfolio1.png'
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -45,15 +46,21 @@ const Signup = () => {
   // Placeholder Form for Sign Up
   return (
     <main className="main" style={{ minHeight: "100vh", minWidth: "100vh" }}>
-      <div className="ui grid" style={{ minHeight: "100vh", minWidth: "100vh" }}>
+      {/* <div className="ui grid" style={{ minHeight: "100vh", minWidth: "100vh" }}> */}
         <div className="left floated seven wide column">
-          <h1 className='head'>Welcome!</h1>
+
+        <div className="logo">
+                <img src={tempLogo} alt="Logo" />
+            </div>
+
+          {/* <h1 className='head'>Welcome!</h1>
           <div className="description">
             <p className="text">We are glad you are here! Please sign up to continue.</p>
-          </div>
+          </div> */}
         </div>
         <div className="right floated seven wide column">
-          <h4 className='head'>Sign Up</h4>
+          <h4 className='head1'>Sign Up</h4>
+          <h5 className="tag">Sign up to continue</h5>
           <div className="description">
             {data ? (
               <p>
@@ -124,8 +131,8 @@ const Signup = () => {
             </div>
           )}
         </div>
-      </div>
-      <Footer />
+      {/* </div> */}
+      {/* <Footer /> */}
     </main>
   );
 };

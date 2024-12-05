@@ -7,11 +7,17 @@
     padding-top: 3em;
 }
 
-.head {
+.head1 {
     font-size: 3em;
-    padding: 10px 0px 0px 0px;
-    text-align: left;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
 }
+
+.tag {
+    padding: 0px 0px 30px 0px;
+    text-align: center;
+}
+
 
 .text {
     font-size: 1em;
@@ -26,6 +32,12 @@
     background-color: #E43D12;
     color: #EBE9E1;
 }
+
+.logo {
+    width: 300px;
+    height: 200px;
+    transform: scale(0.25);
+  }
 
 @media (max-width: 1024px) {
     .ui.grid {
